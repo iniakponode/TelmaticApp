@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="No_Location">Your Current Location is not set yet, waiting....</string>
+    <string name="dialog_permission_title">Permission Reason</string>
+    <string name="dialog_permission_default_message">These Permissions are very necessary</string>
+    <string name="dialog_permission_button_positive">Accept</string>
+</resources>

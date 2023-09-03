@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.uoa.telmaticsapp">
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <uses-permission
+        android:name="android.Manifest.permission.ACCESS_BACKGROUND_LOCATION (for Android >=10 (Q))"/>
+    <uses-permission android:name=" android.Manifest.permission.ACTIVITY_RECOGNITION (for Android >=10 (Q))"/>
+    <uses-permission
+        android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
+
+    <application
+        android:name=".presentation.TelmaticApp"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.TelMaticsApp"
+        tools:targetApi="31">
+        <service
+            android:name=".data.services.LocationS"
+            android:enabled="true"
+            android:exported="true"></service>
+        <service
+            android:name=".data.services.LocationService"
+            android:enabled="true"
+            android:exported="true"></service>
+        <service
+            android:name=".data.services.SensorService"
+            android:enabled="true"
+            android:exported="true"></service>
+        <service
+            android:name="androidx.work.impl.foreground.SystemForegroundService"
+            android:foregroundServiceType="location|microphone|phoneCall|dataSync"
+            tools:node="merge" />
+
+        <activity
+            android:name=".presentation.ui.MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <receiver android:name=".data.services.SensorService$ActionListener"></receiver>
+        <receiver android:name=".data.services.LocationService$ActionListener"></receiver>
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            tools:node="remove">
+
+            <!-- <meta-data -->
+            <!-- android:name="android.support.FILE_PROVIDER_PATHS" -->
+            <!-- android:resource="@xml/file_paths" /> -->
+        </provider>
+    </application>
+
+</manifest>

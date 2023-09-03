@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/telmatics_nav_graph"
+    app:startDestination="@id/blank">
+
+    <fragment
+        android:id="@+id/registerDevice"
+        android:name="com.uoa.telmaticsapp.presentation.ui.RegisterDevice"
+        android:label="fragment_register_device"
+        tools:layout="@layout/fragment_register_device" >
+        <action
+            android:id="@+id/action_registerDevice_to_permissionsFragment"
+            app:destination="@id/permissionsFragment" />
+        <action
+            android:id="@+id/action_registerDevice_to_home"
+            app:destination="@id/home" />
+    </fragment>
+    <fragment
+        android:id="@+id/appstHome"
+        android:name="com.uoa.telmaticsapp.presentation.ui.AppStartHome"
+        android:label="fragment_app_start_home"
+        tools:layout="@layout/fragment_app_start_home" >
+
+        <action
+            android:id="@+id/action_appstHome_to_drinkStateForm"
+            app:destination="@id/drinkStateForm" />
+    </fragment>
+    <fragment
+        android:id="@+id/updUser"
+        android:name="com.uoa.telmaticsapp.presentation.ui.UpdateUser"
+        android:label="fragment_update_user"
+        tools:layout="@layout/fragment_update_user" >
+        <action
+            android:id="@+id/action_updUser_to_appstHome"
+            app:destination="@id/appstHome" />
+        <action
+            android:id="@+id/action_updUser_self"
+            app:destination="@id/updUser" />
+    </fragment>
+    <fragment
+        android:id="@+id/permissionsFragment"
+        android:name="com.uoa.telmaticsapp.presentation.ui.PermissionsFragment"
+        android:label="fragment_permissions"
+        tools:layout="@layout/fragment_permissions" >
+        <action
+            android:id="@+id/action_permissionsFragment_to_appstHome"
+            app:destination="@id/appstHome" />
+    </fragment>
+    <fragment
+        android:id="@+id/drinkStateForm"
+        android:name="com.uoa.telmaticsapp.presentation.ui.DrinkStateForm"
+        android:label="fragment_drink_state_form"
+        tools:layout="@layout/fragment_drink_state_form" >
+        <action
+            android:id="@+id/action_drinkStateForm_to_numberOfBottles"
+            app:destination="@id/numberOfBottles" />
+    </fragment>
+    <fragment
+        android:id="@+id/numberOfBottles"
+        android:name="com.uoa.telmaticsapp.presentation.ui.NumberOfBottles"
+        android:label="fragment_number_of_bottles"
+        tools:layout="@layout/fragment_other_impact" >
+        <action
+            android:id="@+id/action_numberOfBottles_to_appstHome"
+            app:destination="@id/appstHome" />
+    </fragment>
+    <fragment
+        android:id="@+id/home"
+        android:name="com.uoa.telmaticsapp.presentation.ui.Home"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home_to_registerDevice"
+            app:destination="@id/registerDevice" />
+        <action
+            android:id="@+id/action_home_to_updUser"
+            app:destination="@id/updUser" />
+        <action
+            android:id="@+id/action_home_to_appstHome2"
+            app:destination="@id/appstHome" />
+        <action
+            android:id="@+id/action_home_self"
+            app:destination="@id/home" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/blank"
+        android:name="com.uoa.telmaticsapp.presentation.ui.BlankFragment"
+        android:label="fragment_blank"
+        tools:layout="@layout/fragment_blank" >
+        <action
+            android:id="@+id/action_blank_to_home"
+            app:destination="@id/home" />
+        <action
+            android:id="@+id/action_blank_to_appstHome"
+            app:destination="@id/appstHome" />
+    </fragment>
+</navigation>

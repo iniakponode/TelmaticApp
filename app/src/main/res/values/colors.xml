@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="colorSpeedTypeNormal">#4EB30B</color>
+    <color name="colorSpeedTypeMid">#e6e600</color>
+    <color name="colorSpeedTypeHigh">#FF0C0C</color>
+
+    <color name="trips_phone_line_color">#032C9C</color>
+
+    <color name="graphColor1">#417505</color>
+    <color name="graphColor2">#F5A623</color>
+    <color name="graphColor3">#a8003399</color>
+</resources>

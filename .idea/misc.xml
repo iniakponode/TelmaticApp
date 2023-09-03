@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/CODE/TelMaticsApp/app/src/main/res/layout/activity_main.xml" value="0.1308876811594203" />
+        <entry key="..\:/CODE/TelMaticsApp/app/src/main/res/layout/fragment_app_start_home.xml" value="0.1308876811594203" />
+        <entry key="..\:/CODE/TelMaticsApp/app/src/main/res/layout/fragment_blank.xml" value="0.25" />
+        <entry key="..\:/CODE/TelMaticsApp/app/src/main/res/layout/fragment_drink_state_form.xml" value="0.1308876811594203" />
+        <entry key="..\:/CODE/TelMaticsApp/app/src/main/res/layout/fragment_home.xml" value="0.1308876811594203" />
+        <entry key="..\:/CODE/TelMaticsApp/app/src/main/res/layout/fragment_other_impact.xml" value="0.1" />
+        <entry key="..\:/CODE/TelMaticsApp/app/src/main/res/layout/fragment_permissions.xml" value="0.1308876811594203" />
+        <entry key="..\:/CODE/TelMaticsApp/app/src/main/res/layout/fragment_register_device.xml" value="0.1308876811594203" />
+        <entry key="..\:/CODE/TelMaticsApp/app/src/main/res/layout/fragment_sensors.xml" value="0.2" />
+        <entry key="..\:/CODE/TelMaticsApp/app/src/main/res/layout/fragment_update_user.xml" value="0.1308876811594203" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" project-jdk-name="jbr-17" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
