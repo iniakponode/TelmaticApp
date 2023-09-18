@@ -1,7 +1,6 @@
 package com.uoa.telmaticsapp.data.model
 
 
-import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
@@ -17,7 +16,7 @@ data class LastKnownPoints(
     @PrimaryKey
     @SerializedName("id")
     val id: String, // 1
-    @SerializedName(Track.TRACKID)
+    @SerializedName(ExternalFactorsModel.TRACKID)
     val lasttrackId: String,
     @SerializedName("latitude")
     val latitude: Double, // 4.910524
@@ -26,5 +25,5 @@ data class LastKnownPoints(
     @SerializedName("point_date")
     val pointDate: String, // 2022-11-13T16:23:31+0100
     @SerializedName("point_origin")
-    val StartTrackId: String, // Track
+    val StartTrackId: String, // ExternalFactorsModel
 )

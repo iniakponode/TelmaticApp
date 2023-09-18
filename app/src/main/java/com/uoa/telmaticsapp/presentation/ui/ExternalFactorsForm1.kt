@@ -17,30 +17,24 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.uoa.telmaticsapp.databinding.FragmentDrinkStateFormBinding
-import com.uoa.telmaticsapp.data.db.PhDSafeDriveDB
+import com.uoa.telmaticsapp.databinding.FragmentExternalFactorsForm1Binding
 import com.uoa.telmaticsapp.presentation.viewModel.SensorsDataViewModel
 import com.uoa.telmaticsapp.R
-import com.uoa.telmaticsapp.presentation.viewModel.TrackViewModel
+import com.uoa.telmaticsapp.presentation.viewModel.ExternalFactorsViewModel
 import dagger.hilt.android.AndroidEntryPoint
-//import com.uoa.telmaticsapp.data.db.PhDSafeDriveDB
+//import com.uoa.telmaticsapp.data.db.DDCAPDB
 //import com.uoa.telmaticsapp.databinding.FragmentDrinkStateFormBinding
-import java.io.File as FileIO
-import java.io.FileOutputStream as FileOS
-import java.io.IOException
-import kotlin.random.Random
 import kotlin.streams.asSequence
-import java.io.FileInputStream as FileIS
 
 @AndroidEntryPoint
-class DrinkStateForm : Fragment() {
+class ExternalFactorsForm1 : Fragment() {
     private val viewModel: SensorsDataViewModel by activityViewModels()
     private lateinit var sf:SharedPreferences
     private lateinit var editor : SharedPreferences.Editor
-    private  lateinit var binding: FragmentDrinkStateFormBinding
+    private  lateinit var binding: FragmentExternalFactorsForm1Binding
     private lateinit var bundle: Bundle
     private lateinit var intent: Intent
-    private val trackViewModel: TrackViewModel by activityViewModels()
+    private val externalFactorsViewModel: ExternalFactorsViewModel by activityViewModels()
 
        @RequiresApi(Build.VERSION_CODES.N)
        override fun onCreateView(
@@ -50,14 +44,14 @@ class DrinkStateForm : Fragment() {
            sf = activity?.getSharedPreferences("saved_device_token", AppCompatActivity.MODE_PRIVATE)!!
            editor = sf.edit()
         // Inflate the layout for this fragment
-           binding=FragmentDrinkStateFormBinding.inflate(inflater,container,false)
+           binding=FragmentExternalFactorsForm1Binding.inflate(inflater,container,false)
 //           binding.tvFileStoredDeviceTokendrinkState.text="deviceToken"
 
            val dToken= StoredToken.getStoredID(sf,"saved_device_token")
 //               StoredToken.getStoredDeviceToken(sf,getString(R.string.deviceToken))
 
-           binding.tvFileStoredDeviceTokendrinkState.text="Device Token: "+dToken
-           Log.i("Device-TokenSaved",dToken.toString())
+           binding.tvFileStoredDeviceTokendrinkState.text="DeviceModel Token: "+dToken
+           Log.i("DeviceModel-TokenSaved",dToken.toString())
 //           val tripId=java.util.UUID.randomUUID().toString()
 
            val source = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -101,7 +95,7 @@ class DrinkStateForm : Fragment() {
         val sd = Environment.getExternalStorageDirectory()
 
         // Get the Room database storage path using SupportSQLiteOpenHelper
-//        val db= PhDSafeDriveDB.getInstance(requireContext())!!.openHelper.writableDatabase.path
+//        val db= DDCAPDB.getInstance(requireContext())!!.openHelper.writableDatabase.path
 
 //        if (sd.canWrite()) {
 //            val backupDBPath = "mydb.sqlite"      //you can modify the file type you need to export
@@ -165,11 +159,11 @@ class DrinkStateForm : Fragment() {
 private fun saveSelectedDrinkStatus(drinkStatus:String,tripId:String){
     if (drinkStatus=="1"){
         Log.i("SelectedStatDrinking",drinkStatus.toString())
-        trackViewModel.storeDrinkStateLabel(drinkStatus)
+        externalFactorsViewModel.storeDrinkStateLabel(drinkStatus)
     }
     else{
         Log.i("SelectedStatDrinking",drinkStatus.toString())
-        trackViewModel.storeDrinkStateLabel(drinkStatus)
+        externalFactorsViewModel.storeDrinkStateLabel(drinkStatus)
 
     }
 }
@@ -177,13 +171,13 @@ private fun saveSelectedDrinkStatus(drinkStatus:String,tripId:String){
     private fun saveSelectedLoadingStatus(loading:String,tripId:String){
         if (loading=="1"){
             Log.i("SelectedStatOverloading",loading.toString())
-            trackViewModel.saveOverloadingLabel(loading)
+            externalFactorsViewModel.saveOverloadingLabel(loading)
             val bundle= bundleOf("loading" to loading,"tripId" to tripId)
             // insertData(dToken,drinkStatus,tripId)
         }
         else{
             Log.i("SelectedOverloadingStat",loading)
-            trackViewModel.saveOverloadingLabel(loading)
+            externalFactorsViewModel.saveOverloadingLabel(loading)
 
         }
     }

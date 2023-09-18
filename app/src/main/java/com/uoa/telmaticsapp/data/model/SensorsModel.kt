@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName
 import java.util.*
 
 @Entity(tableName = "sensor_data")
-data class SensorsData(
+data class SensorsModel(
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "sensorDataID")
     @SerializedName("sensorDataId")

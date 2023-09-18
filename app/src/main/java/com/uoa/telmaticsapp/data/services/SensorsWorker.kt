@@ -12,7 +12,7 @@
 //import androidx.core.app.NotificationCompat
 //import androidx.work.*
 //import com.uoa.telmaticsapp.R
-//import com.uoa.telmaticsapp.data.model.SensorsData
+//import com.uoa.telmaticsapp.data.model.SensorsModel
 //import com.uoa.telmaticsapp.domain.usecase.StartSensors
 //import com.uoa.telmaticsapp.domain.usecase.StopSensors
 //import dagger.assisted.Assisted
@@ -34,7 +34,7 @@
 //    CoroutineWorker(context, parameters) {
 ////    @Inject
 ////    lateinit var startSensors: StartSensors
-////    val stSensors: Flow<List<SensorsData>> = startSensors.execute(UUID.randomUUID().toString())
+////    val stSensors: Flow<List<SensorsModel>> = startSensors.execute(UUID.randomUUID().toString())
 ////
 ////    @Inject
 ////    lateinit var stopSensors: StopSensors
@@ -66,7 +66,7 @@
 //        }
 //    }
 //
-//    private fun createOutputData(s: String, sensorData: SensorsData): Data {
+//    private fun createOutputData(s: String, sensorData: SensorsModel): Data {
 ////        val loc_date = Date(time)
 ////        val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
 ////        val dat_text: String = sdf.format(loc_date)
@@ -104,7 +104,7 @@
 //    }
 //
 //
-//    suspend fun startSensors(): SensorsData {
+//    suspend fun startSensors(): SensorsModel {
 //        val source = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 //        val tripId= if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
 //            java.util.Random().ints(8, 0, source.length)
@@ -120,7 +120,7 @@
 //            List(20) { alphabet.random() }.joinToString("")
 //        }
 //        val sensorsDataFlow = startSensors.execute()
-//        var sensorD = SensorsData(
+//        var sensorD = SensorsModel(
 //            tripId,
 //            listOf(0.0f, 0.0f, 0.0f),
 //            listOf(0.0f, 0.0f, 0.0f),
@@ -242,7 +242,7 @@
 //        val LOC_TIME = "LOCATION_TIME"
 //        val COLLECTED_DATE = "COLLECTED_DATE"
 //        val TrackPOINT = "TrackPoint"
-//        val TRACK = "Track"
+//        val ExternalFactorsModel = "ExternalFactorsModel"
 //        val LASTPOINTS = "LastKnownPoints"
 //        val LONGITUDE = "longitude"
 //        val LATITUDE = "latitude"

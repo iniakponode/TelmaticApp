@@ -5,16 +5,15 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import androidx.room.util.UUIDUtil
 import com.google.gson.annotations.SerializedName
-import com.uoa.telmaticsapp.data.model.User.Companion.CLIENTID
-import com.uoa.telmaticsapp.data.model.User.Companion.TABLE_NAME
+import com.uoa.telmaticsapp.data.model.DeviceModel.Companion.CLIENTID
+import com.uoa.telmaticsapp.data.model.DeviceModel.Companion.TABLE_NAME
 import java.util.*
 @Entity(tableName = TABLE_NAME,
     indices=[Index(CLIENTID)]
 )
 
-data class User(
+data class DeviceModel(
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = CLIENTID)
     @SerializedName(CLIENTID)

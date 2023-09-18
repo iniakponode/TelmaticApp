@@ -4,7 +4,7 @@ package com.uoa.telmaticsapp.data.model
 import androidx.room.*
 
 import com.google.gson.annotations.SerializedName
-import com.uoa.telmaticsapp.data.model.Track.Companion.TRACKID
+import com.uoa.telmaticsapp.data.model.ExternalFactorsModel.Companion.TRACKID
 import java.util.*
 
 @Entity(tableName = TrackPoint.TABLE_NAME,

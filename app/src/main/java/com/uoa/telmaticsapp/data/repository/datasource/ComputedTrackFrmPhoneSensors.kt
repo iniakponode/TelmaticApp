@@ -1,9 +1,7 @@
 package com.uoa.telmaticsapp.data.repository.datasource
 
-import com.uoa.telmaticsapp.data.model.Track
-import kotlinx.coroutines.flow.Flow
-import java.util.*
+import com.uoa.telmaticsapp.data.model.ExternalFactorsModel
 
 interface ComputedTrackFrmPhoneSensors {
-    fun computeTrackDataFromHardware(trackId:String): Track
+    fun computeTrackDataFromHardware(trackId:String): ExternalFactorsModel
 }

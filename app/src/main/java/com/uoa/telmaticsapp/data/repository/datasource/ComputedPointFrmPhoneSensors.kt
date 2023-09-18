@@ -1,10 +1,10 @@
 package com.uoa.telmaticsapp.data.repository.datasource
 
 import com.uoa.telmaticsapp.data.model.TrackPoint
-import com.uoa.telmaticsapp.data.model.SensorsData
+import com.uoa.telmaticsapp.data.model.SensorsModel
 
 interface ComputedPointFrmPhoneSensors {
-    fun computePointsFromHardware(sensorData:SensorsData,
+    fun computePointsFromHardware(sensorData:SensorsModel,
                                   totalMeters:Double,
                                   deceleration:Double,
                                   trackId:String,

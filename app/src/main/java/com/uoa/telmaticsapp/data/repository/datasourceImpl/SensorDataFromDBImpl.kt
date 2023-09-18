@@ -1,26 +1,25 @@
 package com.uoa.telmaticsapp.data.repository.datasourceImpl
 
-import androidx.lifecycle.LiveData
 import com.uoa.telmaticsapp.data.db.DataAccessObjects.SensorDataDAO
-import com.uoa.telmaticsapp.data.model.SensorsData
+import com.uoa.telmaticsapp.data.model.SensorsModel
 import com.uoa.telmaticsapp.data.repository.datasource.SensorDataFromDB
-//import com.uoa.telmaticsapp.data.model.SensorsData
+//import com.uoa.telmaticsapp.data.model.SensorsModel
 import kotlinx.coroutines.flow.Flow
 
 class SensorDataFromDBImpl(private val sensorDataDAO: SensorDataDAO): SensorDataFromDB {
-    override suspend fun saveSensorData(sensorData: SensorsData) {
+    override suspend fun saveSensorData(sensorData: SensorsModel) {
         sensorDataDAO.insertSensorData(sensorData)
     }
 
-    override fun getASavedSensorData(sensorData: String): Flow<SensorsData> {
+    override fun getASavedSensorData(sensorData: String): Flow<SensorsModel> {
         return sensorDataDAO.getASensorData(sensorData)
     }
 
-    override fun getAllSavedSensorData(): Flow<List<SensorsData>> {
+    override fun getAllSavedSensorData(): Flow<List<SensorsModel>> {
         return sensorDataDAO.getAllSensorData()
     }
 
-    override suspend fun deleteSavedSensorData(sensorData: SensorsData) {
+    override suspend fun deleteSavedSensorData(sensorData: SensorsModel) {
         sensorDataDAO.deleteSensorData(sensorData)
     }
 

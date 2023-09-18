@@ -1,6 +1,6 @@
 package com.uoa.telmaticsapp.data.repository
 
-import com.uoa.telmaticsapp.data.model.User
+import com.uoa.telmaticsapp.data.model.DeviceModel
 import com.uoa.telmaticsapp.data.model.UserAPIResponse
 import com.uoa.telmaticsapp.data.repository.datasource.UserLocalDataSource
 import com.uoa.telmaticsapp.data.util.Resource
@@ -20,19 +20,19 @@ class UserRepoImpl(private val localUser: UserLocalDataSource): UserRepository {
         TODO("Not yet implemented")
     }
 
-    override suspend fun updateUser(user: User) {
-        localUser.update(user)
+    override suspend fun updateUser(deviceModel: DeviceModel) {
+        localUser.update(deviceModel)
     }
 
-    override suspend fun deleteUser(user: User) {
-        localUser.delete(user)
+    override suspend fun deleteUser(deviceModel: DeviceModel) {
+        localUser.delete(deviceModel)
     }
 
-    override suspend fun saveUser(user: User) {
-        localUser.saveUser(user)
+    override suspend fun saveUser(deviceModel: DeviceModel) {
+        localUser.saveUser(deviceModel)
     }
 
-    override fun getUserFromDB(user: User): Flow<List<User>> {
+    override fun getUserFromDB(deviceModel: DeviceModel): Flow<List<DeviceModel>> {
         return localUser.getUsers()
     }
 

@@ -2,15 +2,9 @@ package com.uoa.telmaticsapp.util
 
 import android.content.Context
 import android.content.Intent
-import android.os.Environment
-import android.widget.Toast
 import androidx.core.content.FileProvider
-import com.opencsv.CSVWriter
-import com.uoa.telmaticsapp.data.model.Track
 import com.uoa.telmaticsapp.BuildConfig
 import java.io.File
-import java.io.FileWriter
-import java.io.IOException
 import java.util.*
 
 class FileUtils {

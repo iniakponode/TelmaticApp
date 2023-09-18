@@ -1,14 +1,13 @@
 package com.uoa.telmaticsapp.data.repository.datasourceImpl
 import android.hardware.SensorManager
 import android.os.Build
-import com.uoa.telmaticsapp.data.model.SensorsData
+import com.uoa.telmaticsapp.data.model.SensorsModel
 import com.uoa.telmaticsapp.data.repository.datasource.SensorDataFromHardware
 import com.uoa.telmaticsapp.presentation.di.*
 import com.uoa.telmaticsapp.presentation.ui.StoredToken
 import com.uoa.telmaticsapp.util.TrackingSensor
 import kotlinx.coroutines.flow.*
 import java.time.Instant
-import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeFormatter.ISO_INSTANT
 import javax.inject.Inject
 import kotlin.streams.asSequence
@@ -27,7 +26,7 @@ class SensorDataFromHardwareImpl @Inject constructor(
     @RotationVectorSensorM private val rotationVectorM: TrackingSensor,
     @MagnetometerSensorM private val magnetometerSensorM: TrackingSensor,
     @GravitySensorM private val gravitySensorM:TrackingSensor
-//    var sensorsData: SensorsData
+//    var sensorsData: SensorsModel
 
     ):SensorDataFromHardware{
 
@@ -61,14 +60,14 @@ class SensorDataFromHardwareImpl @Inject constructor(
 
 
 
-    //    var sensorsData=SensorsData(listOf(0.0f),listOf(0.0f),listOf(0.0f),listOf(0.0f),listOf(0.0f),listOf(0.0f),
+    //    var sensorsData=SensorsModel(listOf(0.0f),listOf(0.0f),listOf(0.0f),listOf(0.0f),listOf(0.0f),listOf(0.0f),
 //        listOf(0.0f),listOf(0.0f),listOf(0.0f),"0:0:0:0:0")
 
 
 //init {
 //    getSensorDataFromHardwre(sensorDataID)
 //}
-    override fun getSensorDataFromHardwre(): Flow<List<SensorsData>> {
+    override fun getSensorDataFromHardwre(): Flow<List<SensorsModel>> {
 
     val date= if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
         ISO_INSTANT.format(Instant.now()).toString()
@@ -346,7 +345,7 @@ class SensorDataFromHardwareImpl @Inject constructor(
         }
     }
 
-        val sensorsData=SensorsData(
+        val sensorsModel=SensorsModel(
             sensorID,
             this.accelVal,
 //            this.accelValltdA,
@@ -374,7 +373,7 @@ class SensorDataFromHardwareImpl @Inject constructor(
        return flow {
            this.emit(
                listOf(
-                   sensorsData
+                   sensorsModel
                )
 
            )

@@ -3,18 +3,15 @@ package com.uoa.telmaticsapp.presentation.viewModel
 //import io.reactivex.annotations.SchedulerSupport.IO
 
 import android.app.Application
-import android.content.Intent
 import androidx.lifecycle.*
-import androidx.work.*
 import com.uoa.telmaticsapp.data.model.LastKnownPoints
-import com.uoa.telmaticsapp.data.model.SensorsData
-import com.uoa.telmaticsapp.data.model.Track
+import com.uoa.telmaticsapp.data.model.SensorsModel
+import com.uoa.telmaticsapp.data.model.ExternalFactorsModel
 import com.uoa.telmaticsapp.data.model.TrackPoint
 import com.uoa.telmaticsapp.domain.usecase.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.*
 import javax.inject.Inject
 
 
@@ -157,13 +154,13 @@ class SensorsDataViewModel @Inject constructor(
         get() = sbText
 
 //    private val workManager=WorkManager.getInstance(app.applicationContext)
-//    private val sensorsLiveData = MutableLiveData<SensorsData>()
+//    private val sensorsLiveData = MutableLiveData<SensorsModel>()
 
 
-    fun getComputedTrack(trackId:String):Track{
+    fun getComputedTrack(trackId:String):ExternalFactorsModel{
         return getComputedTrack.execute(trackId)
     }
-    fun getPointFromHardware(sensorData: SensorsData,
+    fun getPointFromHardware(sensorData: SensorsModel,
                              totalMeters:Double,
                              deceleration:Double,
                              trackId: String,
@@ -203,11 +200,11 @@ class SensorsDataViewModel @Inject constructor(
 //    fun getLastKPoints(): List<LastKnownPoints> {
 //        return getLastKPoints.execute()
 //    }
-    suspend fun saveTrack(track: Track){
-        addTrack.execute(track)
+    suspend fun saveTrack(externalFactorsModel: ExternalFactorsModel){
+        addTrack.execute(externalFactorsModel)
     }
-    suspend fun updateTrack(track: Track){
-        updateTrack.execute(track)
+    suspend fun updateTrack(externalFactorsModel: ExternalFactorsModel){
+        updateTrack.execute(externalFactorsModel)
     }
     suspend fun savePoint(trackPoint: TrackPoint){
         addPoint.execute(trackPoint)
@@ -226,13 +223,13 @@ class SensorsDataViewModel @Inject constructor(
     fun setBtnText(btText:String){
         sbText.value=btText
     }
-    fun saveSensorDataToDB(sensorsData: SensorsData){
+    fun saveSensorDataToDB(sensorsModel: SensorsModel){
         viewModelScope.launch(Dispatchers.IO){
-             saveSensorData.execute(sensorsData)
+             saveSensorData.execute(sensorsModel)
         }
     }
 //    (Dispatcher.IO)
-//    fun deleteFromDB(sensorsData: SensorsData){
+//    fun deleteFromDB(sensorsData: SensorsModel){
 //        viewModelScope.launch(Dispatchers.IO) {
 //            deleteSensorData.execute(sensorsData)
 //        }

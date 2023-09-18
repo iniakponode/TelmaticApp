@@ -60,7 +60,7 @@ private val userViewModel: UserDataViewModel by activityViewModels()
         val deviceToken = TokenGenerator.generateRandomString(10)
 //        val bundle = bundleOf("deviceToken" to deviceToken)
 //        StoreIDs.storeDeviceTokenLocally(requireContext(), deviceToken, editor)
-//        val user = User(
+//        val user = DeviceModel(
 //            deviceToken.toString(),
 //            "",
 //            "",
@@ -86,7 +86,7 @@ private val userViewModel: UserDataViewModel by activityViewModels()
             } else {
                 Toast.makeText(activity, "Sorry, Token could not be created", Toast.LENGTH_LONG)
                     .show()
-                userViewModel.updateSBText("Register User")
+                userViewModel.updateSBText("Register DeviceModel")
                 findNavController().navigate(R.id.action_registerDevice_to_home)
             }
     }

@@ -3,7 +3,7 @@ package com.uoa.telmaticsapp.presentation.di
 import android.app.Application
 import androidx.room.Room
 import com.uoa.telmaticsapp.data.db.DataAccessObjects.*
-import com.uoa.telmaticsapp.data.db.PhDSafeDriveDB
+import com.uoa.telmaticsapp.data.db.DDCAPDB
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,42 +16,42 @@ import javax.inject.Singleton
 object DatabaseModule {
     @Provides
     @Singleton
-    fun provideTelmaticsDB(app: Application): PhDSafeDriveDB {
-        return Room.databaseBuilder(app, PhDSafeDriveDB::class.java, "telmatic_db")
+    fun provideTelmaticsDB(app: Application): DDCAPDB {
+        return Room.databaseBuilder(app, DDCAPDB::class.java, "telmatic_db")
             .fallbackToDestructiveMigration()
             .build()
     }
     @Provides
     @Singleton
-    fun provideSensorDataDAO(telmaticDB: PhDSafeDriveDB): SensorDataDAO{
+    fun provideSensorDataDAO(telmaticDB: DDCAPDB): SensorDataDAO{
         return telmaticDB.sensorDataDAO()
     }
 
     @Provides
     @Singleton
-    fun providePointDAO(telmaticDB: PhDSafeDriveDB): PointDAO {
+    fun providePointDAO(telmaticDB: DDCAPDB): PointDAO {
         return telmaticDB.pointDAO()
     }
     @Provides
     @Singleton
-    fun provideLastKPointDAO(telmaticDB: PhDSafeDriveDB): LastKnownPointsDAO {
+    fun provideLastKPointDAO(telmaticDB: DDCAPDB): LastKnownPointsDAO {
         return telmaticDB.lastKnownPointsDAO()
     }
     @Provides
     @Singleton
-    fun provideTrackDAO(telmaticDB: PhDSafeDriveDB): TrackDAO {
+    fun provideTrackDAO(telmaticDB: DDCAPDB): TrackDAO {
         return telmaticDB.trackDAO()
     }
 
     @Provides
     @Singleton
-    fun provideTripDetailsDAO(telmaticDB: PhDSafeDriveDB): TripDetailsDAO {
+    fun provideTripDetailsDAO(telmaticDB: DDCAPDB): TripDetailsDAO {
         return telmaticDB.tripDetailsDAO()
     }
 
     @Provides
     @Singleton
-    fun provideUserDAO(telmaticDB: PhDSafeDriveDB): UserDAO {
+    fun provideUserDAO(telmaticDB: DDCAPDB): UserDAO {
         return telmaticDB.userDAO()
     }
 

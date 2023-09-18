@@ -22,8 +22,8 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.fragment.findNavController
 import com.uoa.telmaticsapp.R
 import com.uoa.telmaticsapp.data.model.LastKnownPoints
-import com.uoa.telmaticsapp.data.model.SensorsData
-import com.uoa.telmaticsapp.data.model.Track
+import com.uoa.telmaticsapp.data.model.SensorsModel
+import com.uoa.telmaticsapp.data.model.ExternalFactorsModel
 import com.uoa.telmaticsapp.data.model.TrackPoint
 import com.uoa.telmaticsapp.data.services.LocationService
 import com.uoa.telmaticsapp.data.services.SensorService
@@ -32,7 +32,6 @@ import com.uoa.telmaticsapp.databinding.FragmentAppStartHomeBinding
 import com.uoa.telmaticsapp.presentation.viewModel.SensorsDataViewModel
 import com.uoa.telmaticsapp.util.StoreIDs
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.time.Instant
@@ -75,7 +74,7 @@ class AppStartHome() : Fragment() {
                         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_app_start_home, container,false)
                         binding.sDID.text = getString(R.string.No_Location)
                         binding.sensorsViewModel=sensorsDataviewModel
-                        binding.tvDToken.text= "Device Token: $devToken"
+                        binding.tvDToken.text= "DeviceModel Token: $devToken"
                         sensorsDataviewModel.btnText.observe(requireActivity()){ status->
                             triggerBtn=status
                         }
@@ -185,7 +184,7 @@ class AppStartHome() : Fragment() {
 //                val proxim=intent.getFloatArrayExtra(SensorService.PROXIMITY)
                 val rotVect=intent.getFloatArrayExtra(SensorService.ROTVECT)
                 StoreIDs.storeSensorsIDLocally(requireActivity(),sensorsID.toString(),editor)
-                val sensorsD= SensorsData(
+                val sensorsD= SensorsModel(
                     sensorsID!!,
                     listOf(accelerom?.get(0), accelerom?.get(1), accelerom?.get(2)) as List<Float>,
 //                    listOf(acceleromLTDA!![0],acceleromLTDA!![1],acceleromLTDA!![2]),
@@ -394,8 +393,8 @@ class AppStartHome() : Fragment() {
         super.onDestroy()
     }
 
-    private fun saveRawSensorData(sensorsData: SensorsData) {
-        sensorsDataviewModel.saveSensorDataToDB(sensorsData)
+    private fun saveRawSensorData(sensorsModel: SensorsModel) {
+        sensorsDataviewModel.saveSensorDataToDB(sensorsModel)
 
         }
     private fun savePoint(trackPoint: TrackPoint){
@@ -404,7 +403,7 @@ class AppStartHome() : Fragment() {
         }
     }
     private fun saveTrack(counter:Int){
-        //                Track Data
+        //                ExternalFactorsModel Data
         val source = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         val tripId= if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             Random().ints(8, 0, source.length)
@@ -436,14 +435,14 @@ class AppStartHome() : Fragment() {
                             o_experience:String,
                             drunk_state:String,
                             overloading:String){
-        //                Track Data
+        //                ExternalFactorsModel Data
 //        val trackId=UUID.randomUUID()
 //        val startDate=if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 //            DateTimeFormatter.ISO_INSTANT.format(Instant.now()).toString()
 //        } else {
 //
 //        }
-        val track=Track(
+        val externalFactorsModel=ExternalFactorsModel(
             StoredToken.getStoredID(sf,"saved_trackId"),
             StoredToken.getStoredID(sf,"saved_start_date"),
             endDate,
@@ -452,7 +451,7 @@ class AppStartHome() : Fragment() {
             overloading
         )
         lifecycleScope.launch {
-            sensorsDataviewModel.updateTrack(track)
+            sensorsDataviewModel.updateTrack(externalFactorsModel)
         }
     }
 

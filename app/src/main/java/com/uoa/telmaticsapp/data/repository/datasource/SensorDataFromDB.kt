@@ -1,14 +1,13 @@
 package com.uoa.telmaticsapp.data.repository.datasource
 
-import androidx.lifecycle.LiveData
-import com.uoa.telmaticsapp.data.model.SensorsData
+import com.uoa.telmaticsapp.data.model.SensorsModel
 import kotlinx.coroutines.flow.Flow
 
 interface SensorDataFromDB {
-    suspend fun saveSensorData(sensorData: SensorsData)
-    fun getASavedSensorData(sensorData: String): Flow<SensorsData>
-    fun getAllSavedSensorData():Flow<List<SensorsData>>
-    suspend fun deleteSavedSensorData(sensorData: SensorsData)
+    suspend fun saveSensorData(sensorData: SensorsModel)
+    fun getASavedSensorData(sensorData: String): Flow<SensorsModel>
+    fun getAllSavedSensorData():Flow<List<SensorsModel>>
+    suspend fun deleteSavedSensorData(sensorData: SensorsModel)
 //    fun getLastSensorID(): LiveData<Long>
 
 }

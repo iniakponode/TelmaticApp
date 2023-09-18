@@ -41,7 +41,7 @@
         android:layout_marginBottom="5dp"
         android:background="@color/design_default_color_background"
         android:paddingLeft="5dp"
-        android:text="@{sensorsViewModel.sensorsData}"
+        android:text="@{sensorsViewModel.sensorsModel}"
         android:textColor="@color/graphColor3"
         android:textSize="20sp"
         android:textStyle="bold"

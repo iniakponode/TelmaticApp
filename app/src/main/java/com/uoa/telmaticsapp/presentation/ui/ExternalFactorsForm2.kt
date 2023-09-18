@@ -16,16 +16,16 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.uoa.telmaticsapp.R
 
-import com.uoa.telmaticsapp.data.model.Track
+import com.uoa.telmaticsapp.data.model.ExternalFactorsModel
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import com.uoa.telmaticsapp.databinding.FragmentOtherImpactBinding
+import com.uoa.telmaticsapp.databinding.FragmentExternalFactorsForm2Binding
 import com.uoa.telmaticsapp.presentation.viewModel.SensorsDataViewModel
-import com.uoa.telmaticsapp.presentation.viewModel.TrackViewModel
+import com.uoa.telmaticsapp.presentation.viewModel.ExternalFactorsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class NumberOfBottles : Fragment() {
+class ExternalFactorsForm2 : Fragment() {
     private lateinit var sf: SharedPreferences
     private lateinit var editor : SharedPreferences.Editor
     private var drinkStatus: String?=null
@@ -34,11 +34,11 @@ class NumberOfBottles : Fragment() {
     private  var tripId: String?=null
     private lateinit var dToken:String
     private val viewModel: SensorsDataViewModel by activityViewModels()
-    private lateinit var binding: FragmentOtherImpactBinding
-    private lateinit var tripsList: List<Track>
+    private lateinit var binding: FragmentExternalFactorsForm2Binding
+    private lateinit var tripsList: List<ExternalFactorsModel>
     private lateinit var entries: Array<String>
     private val sensorsDataviewModel: SensorsDataViewModel by activityViewModels()
-    private val trackViewModel:TrackViewModel by activityViewModels()
+    private val externalFactorsViewModel:ExternalFactorsViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,19 +54,19 @@ class NumberOfBottles : Fragment() {
         dToken=StoredToken.getStoredID(sf,"saved_device_token")
 
         // Inflate the layout for this fragment
-        binding =FragmentOtherImpactBinding.inflate(inflater,container,false)
-        binding.tvDTok.text="Device Token: "+dToken
+        binding =FragmentExternalFactorsForm2Binding.inflate(inflater,container,false)
+        binding.tvDTok.text="DeviceModel Token: "+dToken
 
 
-//        Log.i("Device-TokenSaved",dToken.toString())
+//        Log.i("DeviceModel-TokenSaved",dToken.toString())
         val stat="drinkStatus"
-         trackViewModel.drinkState.observe(requireActivity()) { drinkState ->
+         externalFactorsViewModel.drinkState.observe(requireActivity()) { drinkState ->
              drinkStatus = drinkState
          }
-        trackViewModel.ovLoading.observe(requireActivity()){ovLoading->
+        externalFactorsViewModel.ovLoading.observe(requireActivity()){ ovLoading->
             overloading=ovLoading
         }
-//        trackViewModel.tripID.observe(requireActivity()){tripID->
+//        externalFactorsViewModel.tripID.observe(requireActivity()){tripID->
 //            tripId=tripID
 //        }
 
@@ -99,8 +99,8 @@ class NumberOfBottles : Fragment() {
                     o_experience:String,
                     drunk_state:String,
                     overloading:String){
-        //                Track Data
-        val track=Track(
+        //                ExternalFactorsModel Data
+        val externalFactorsModel=ExternalFactorsModel(
             StoredToken.getStoredID(sf,"saved_trackId"),
             StoredToken.getStoredID(sf,"saved_start_date"),
             endDate,
@@ -109,7 +109,7 @@ class NumberOfBottles : Fragment() {
             overloading
         )
         GlobalScope.launch {
-            sensorsDataviewModel.updateTrack(track)
+            sensorsDataviewModel.updateTrack(externalFactorsModel)
 //            exportDBToCSV(
 //                track.drunk_state,
 //                track.overloading,
@@ -128,7 +128,7 @@ class NumberOfBottles : Fragment() {
 //        if(csvFile!=null){
 //
 //            csvWriter().open(csvFile,append =false){
-//                writeRow(listOf("id","Track ID","Start Date","End Date","Drunk State","Overloading","Other Experiences"))
+//                writeRow(listOf("id","ExternalFactorsModel ID","Start Date","End Date","Drunk State","Overloading","Other Experiences"))
 //                    tripsList.forEachIndexed { index, track ->
 //                            writeRow(
 //                                listOf(
@@ -163,7 +163,7 @@ class NumberOfBottles : Fragment() {
     }
 
 //    companion object {
-//        fun newInstance(): NumberOfBottles = NumberOfBottles()
+//        fun newInstance(): ExternalFactorsForm2 = ExternalFactorsForm2()
 //    }
 
 }

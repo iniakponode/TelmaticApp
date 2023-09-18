@@ -7,5 +7,5 @@ data class Login(
     @SerializedName("Devicetoken")
     val devicetoken: String, // UUID
     @SerializedName("Password")
-    val password: String // User Group Instance Key
+    val password: String // DeviceModel Group Instance Key
 )

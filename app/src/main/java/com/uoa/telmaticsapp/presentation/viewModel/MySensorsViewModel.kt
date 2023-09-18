@@ -5,7 +5,7 @@
 //import androidx.lifecycle.LiveData
 //import androidx.lifecycle.MutableLiveData
 //import com.uoa.telmaticsapp.data.services.SensorService
-//import com.uoa.telmaticsapp.data.model.User
+//import com.uoa.telmaticsapp.data.model.DeviceModel
 //import com.uoa.telmaticsapp.domain.repository.SensorDataRepository
 //import com.uoa.telmaticsapp.domain.usecase.DeleteSensorData
 //import com.uoa.telmaticsapp.domain.usecase.SaveSensorData
@@ -23,7 +23,7 @@
 ////    private val db:
 //                         private val sensorDataRepo: SensorDataRepository,
 //                         private val app: Application,): AndroidViewModel(app) {
-//    private var sbText= MutableLiveData<String>("Register User")
+//    private var sbText= MutableLiveData<String>("Register DeviceModel")
 //    val btnText: LiveData<String>
 //        get() = sbText
 //
@@ -77,7 +77,7 @@
 //    fun updateSBText(regStatText:String){
 //        sbText.value=regStatText
 //    }
-//    fun InitializeUser(user: User): Boolean{
+//    fun InitializeUser(user: DeviceModel): Boolean{
 //        var inserted=false
 //        c_id.value=user.clientID
 //        f_name.value=user.firstName
@@ -91,7 +91,7 @@
 //        m_status.value=user.maritalStatus
 //        n_child.value=user.childrenCount
 //
-//        val newUser= User(
+//        val newDeviceModel= DeviceModel(
 //            c_id.value!!,
 //            f_name.value!!,
 //            l_Name.value!!,
@@ -106,7 +106,7 @@
 //            u_type.value!!)
 //
 //        GlobalScope.launch(Dispatchers.IO) {
-//            createUser.execute(newUser).also {
+//            createUser.execute(newDeviceModel).also {
 //                inserted=true
 //            }
 //
@@ -115,7 +115,7 @@
 //        return inserted
 //    }
 //
-//    fun UpdateUser(user: User):Boolean{
+//    fun UpdateUser(user: DeviceModel):Boolean{
 //        var updated=false
 //        c_id.value=user.clientID
 //        f_name.value=user.firstName
@@ -129,7 +129,7 @@
 //        m_status.value=user.maritalStatus
 //        n_child.value=user.childrenCount
 //
-//        val newUser= User(
+//        val newDeviceModel= DeviceModel(
 //            c_id.value!!,
 //            f_name.value!!,
 //            l_Name.value!!,
@@ -143,7 +143,7 @@
 //            n_child.value!!,
 //            u_type.value!!)
 //        GlobalScope.launch(Dispatchers.IO) {
-//            UpdateUser.execute(newUser).also {
+//            UpdateUser.execute(newDeviceModel).also {
 //                updated=true
 //            }
 //

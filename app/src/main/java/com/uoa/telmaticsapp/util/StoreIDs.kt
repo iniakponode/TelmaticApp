@@ -22,7 +22,7 @@ class StoreIDs {
             edtor.apply {
                 putString("saved_start_date", startDate)
             }.apply()
-            Toast.makeText(context,"Track Start Date Saved Successfully", Toast.LENGTH_LONG)
+            Toast.makeText(context,"ExternalFactorsModel Start Date Saved Successfully", Toast.LENGTH_LONG)
 
         }
         fun storeStarLastSIDLocally(context: Context, sID: String, edtor: SharedPreferences.Editor){
@@ -47,7 +47,7 @@ class StoreIDs {
             edtor.apply {
                 putString("saved_end_date", endDate)
             }.apply()
-            Toast.makeText(context,"Track end date Saved Successfully", Toast.LENGTH_LONG)
+            Toast.makeText(context,"ExternalFactorsModel end date Saved Successfully", Toast.LENGTH_LONG)
 
         }
 
@@ -64,7 +64,7 @@ class StoreIDs {
             edtor.apply {
                 putString("saved_device_token", deviceToken)
             }.apply()
-            Toast.makeText(context,"Device Token Saved Successfully", Toast.LENGTH_LONG)
+            Toast.makeText(context,"DeviceModel Token Saved Successfully", Toast.LENGTH_LONG)
 
         }
 
@@ -73,7 +73,7 @@ class StoreIDs {
             edtor.apply {
                 putString("saved_tel_device_token", deviceToken)
             }.apply()
-            Toast.makeText(context,"Device Token Saved Successfully", Toast.LENGTH_LONG)
+            Toast.makeText(context,"DeviceModel Token Saved Successfully", Toast.LENGTH_LONG)
 
         }
 

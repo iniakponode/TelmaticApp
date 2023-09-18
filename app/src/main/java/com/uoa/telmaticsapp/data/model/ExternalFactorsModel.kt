@@ -8,10 +8,10 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import java.util.*
 
-@Entity(tableName = Track.TABLE_NAME,
-    indices=[Index(Track.TRACKID)]
+@Entity(tableName = ExternalFactorsModel.TABLE_NAME,
+    indices=[Index(ExternalFactorsModel.TRACKID)]
 )
-data class Track(
+data class ExternalFactorsModel(
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = TRACKID)
     @SerializedName(TRACKID)

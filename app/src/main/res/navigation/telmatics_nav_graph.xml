@@ -25,7 +25,7 @@
 
         <action
             android:id="@+id/action_appstHome_to_drinkStateForm"
-            app:destination="@id/drinkStateForm" />
+            app:destination="@id/externalFactorsForm1" />
     </fragment>
     <fragment
         android:id="@+id/updUser"
@@ -49,19 +49,19 @@
             app:destination="@id/appstHome" />
     </fragment>
     <fragment
-        android:id="@+id/drinkStateForm"
-        android:name="com.uoa.telmaticsapp.presentation.ui.DrinkStateForm"
+        android:id="@+id/externalFactorsForm1"
+        android:name="com.uoa.telmaticsapp.presentation.ui.ExternalFactorsForm1"
         android:label="fragment_drink_state_form"
-        tools:layout="@layout/fragment_drink_state_form" >
+        tools:layout="@layout/fragment_external_factors_form1" >
         <action
             android:id="@+id/action_drinkStateForm_to_numberOfBottles"
-            app:destination="@id/numberOfBottles" />
+            app:destination="@id/externalFactorsForm2" />
     </fragment>
     <fragment
-        android:id="@+id/numberOfBottles"
-        android:name="com.uoa.telmaticsapp.presentation.ui.NumberOfBottles"
+        android:id="@+id/externalFactorsForm2"
+        android:name="com.uoa.telmaticsapp.presentation.ui.ExternalFactorsForm2"
         android:label="fragment_number_of_bottles"
-        tools:layout="@layout/fragment_other_impact" >
+        tools:layout="@layout/fragment_external_factors_form2" >
         <action
             android:id="@+id/action_numberOfBottles_to_appstHome"
             app:destination="@id/appstHome" />

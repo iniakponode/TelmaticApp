@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class TrackViewModel: ViewModel() {
+class ExternalFactorsViewModel: ViewModel() {
     private var sbText= MutableLiveData<String>("Start Trip")
     val btnText: LiveData<String>
         get() = sbText

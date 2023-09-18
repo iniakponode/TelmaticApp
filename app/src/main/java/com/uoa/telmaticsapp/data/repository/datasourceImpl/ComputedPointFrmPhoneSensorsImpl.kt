@@ -3,7 +3,7 @@ package com.uoa.telmaticsapp.data.repository.datasourceImpl
 import android.os.Build
 import android.util.Log
 import com.uoa.telmaticsapp.data.model.TrackPoint
-import com.uoa.telmaticsapp.data.model.SensorsData
+import com.uoa.telmaticsapp.data.model.SensorsModel
 import com.uoa.telmaticsapp.data.repository.datasource.ComputedPointFrmPhoneSensors
 import java.text.SimpleDateFormat
 import java.time.Instant
@@ -17,7 +17,7 @@ import kotlin.streams.asSequence
 
 class ComputedPointFrmPhoneSensorsImpl(): ComputedPointFrmPhoneSensors {
     var pointID=0
-    override fun computePointsFromHardware(sensorData:SensorsData,totalMets:Double,deceleration:Double, trackId:String, speed:Double,midSpeed:Double, long:String, lat:String): TrackPoint {
+    override fun computePointsFromHardware(sensorData:SensorsModel, totalMets:Double, deceleration:Double, trackId:String, speed:Double, midSpeed:Double, long:String, lat:String): TrackPoint {
         val gravity=FloatArray(3)
 
         pointID+=1

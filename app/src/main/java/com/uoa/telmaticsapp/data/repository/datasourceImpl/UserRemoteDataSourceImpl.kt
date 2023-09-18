@@ -3,7 +3,7 @@ package com.uoa.telmaticsapp.data.repository.datasourceImpl
 import com.telematicssdk.auth.TelematicsAuth
 import com.telematicssdk.auth.api.model.Gender
 import com.telematicssdk.auth.external.SuccessListener
-import com.uoa.telmaticsapp.data.model.User
+import com.uoa.telmaticsapp.data.model.DeviceModel
 import com.uoa.telmaticsapp.data.model.UserAPIResponse
 import java.util.*
 
@@ -14,7 +14,7 @@ class UserRemoteDataSourceImpl(){
     val Public_Drivers_INSTANCE_ID="f4045fcf-43ce-4343-b36e-a01000d15019"
     val Public_Drivers_INSTANCE_Key="c35e5ee4-3d11-4a3a-be09-ad7393362bdb"
     lateinit var userAPIResponse: UserAPIResponse
-    val newUser=User(
+    val newDeviceModel=DeviceModel(
         clientID = "",
         firstName = "",
         lastName = "",
@@ -36,22 +36,22 @@ class UserRemoteDataSourceImpl(){
                               phone:String?,
                               gender:Gender):UserAPIResponse{
 
-//         newUser.firstName=firstName!!
-//         newUser.lastName=lastName!!
-//         newUser.email=email!!
-//         newUser.phone=phone!!
-//         newUser.gender=G!!
+//         newDeviceModel.firstName=firstName!!
+//         newDeviceModel.lastName=lastName!!
+//         newDeviceModel.email=email!!
+//         newDeviceModel.phone=phone!!
+//         newDeviceModel.gender=G!!
 
          val createNewUserResult=TelematicsAuth.createDeviceToken(
              Public_Drivers_INSTANCE_ID,Public_Drivers_INSTANCE_Key,
              email=email,
              phone=phone,
-             clientId = newUser.clientID,
+             clientId = newDeviceModel.clientID,
              firstName=firstName,
              lastName=lastName,
              gender=gender,
-             childrenCount = newUser.childrenCount,
-             address = newUser.address
+             childrenCount = newDeviceModel.childrenCount,
+             address = newDeviceModel.address
          )
 
              .onSuccess(

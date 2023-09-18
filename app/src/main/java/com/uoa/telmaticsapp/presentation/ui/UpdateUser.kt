@@ -11,7 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.uoa.telmaticsapp.R
-import com.uoa.telmaticsapp.data.model.User
+import com.uoa.telmaticsapp.data.model.DeviceModel
 import com.uoa.telmaticsapp.databinding.FragmentUpdateUserBinding
 import com.uoa.telmaticsapp.presentation.viewModel.UserDataViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -52,7 +52,7 @@ class UpdateUser : Fragment() {
 
     ){
         val  bundle= bundleOf("deviceToken" to deviceToken.toString())
-        val user= User(
+        val deviceModel= DeviceModel(
             deviceToken.toString(),
             firstName,
             lastname,
@@ -66,12 +66,12 @@ class UpdateUser : Fragment() {
             childrenCount,
             userType
         )
-        if(userViewModel.updateUser(user)){
-            Toast.makeText(activity,"User data Successfully!", Toast.LENGTH_LONG).show()
+        if(userViewModel.updateUser(deviceModel)){
+            Toast.makeText(activity,"DeviceModel data Successfully!", Toast.LENGTH_LONG).show()
             findNavController().navigate(R.id.action_updUser_to_appstHome,bundle)
         }
         else{
-            Toast.makeText(activity,"Sorry, User Data Update Failed", Toast.LENGTH_LONG).show()
+            Toast.makeText(activity,"Sorry, DeviceModel Data Update Failed", Toast.LENGTH_LONG).show()
             findNavController().navigate(R.id.action_updUser_self,bundle)
         }
 

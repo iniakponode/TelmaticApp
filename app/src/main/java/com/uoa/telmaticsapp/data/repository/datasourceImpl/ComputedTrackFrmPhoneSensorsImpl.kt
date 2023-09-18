@@ -1,14 +1,13 @@
 package com.uoa.telmaticsapp.data.repository.datasourceImpl
 
 import android.os.Build
-import com.uoa.telmaticsapp.data.model.Track
+import com.uoa.telmaticsapp.data.model.ExternalFactorsModel
 import com.uoa.telmaticsapp.data.repository.datasource.ComputedTrackFrmPhoneSensors
 import java.time.Instant
 import java.time.format.DateTimeFormatter
-import java.util.*
 
 class ComputedTrackFrmPhoneSensorsImpl: ComputedTrackFrmPhoneSensors {
-    override fun computeTrackDataFromHardware(trackId:String):Track {
+    override fun computeTrackDataFromHardware(trackId:String):ExternalFactorsModel {
 //        val trackId=UUID.randomUUID()
         val startDate=if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             DateTimeFormatter.ISO_INSTANT.format(Instant.now()).toString()
@@ -16,7 +15,7 @@ class ComputedTrackFrmPhoneSensorsImpl: ComputedTrackFrmPhoneSensors {
 
         }
 
-        val track=Track(
+        val externalFactorsModel=ExternalFactorsModel(
             trackId.toString(),
             startDate.toString(),
             "",
@@ -24,7 +23,7 @@ class ComputedTrackFrmPhoneSensorsImpl: ComputedTrackFrmPhoneSensors {
             "",
             ""
         )
-    return track
+    return externalFactorsModel
 
     }
 }

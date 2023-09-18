@@ -75,7 +75,7 @@ val stopSens:Any
         val ROLL="ROLL"
         val COLLECTED_DATE="COLLECTED_DATE"
         val TrackPOINT="TrackPoint"
-        val TRACK="Track"
+        val ExternalFactorsModel="ExternalFactorsModel"
         val LASTPOINTS="LastKnownPoints"
         val LONGITUDE="longitude"
         val LATITUDE="latitude"
@@ -102,7 +102,7 @@ val stopSens:Any
 
     suspend fun startSensors() {
            val sensorsDataFlow = startSensors.execute()
-//           var sensorD= SensorsData(
+//           var sensorD= SensorsModel(
 //            "", listOf(0.0f,0.0f,0.0f),listOf(0.0f,0.0f,0.0f),listOf(0.0f,0.0f,0.0f),0,
 //            listOf(0.0f,0.0f,0.0f),0,listOf(0.0f,0.0f,0.0f),listOf(0.0f,0.0f,0.0f),listOf(0.0f,0.0f,0.0f),0,
 //            listOf(0.0f,0.0f,0.0f),0,listOf(0.0f,0.0f,0.0f),0,listOf(0.0f,0.0f,0.0f),0,

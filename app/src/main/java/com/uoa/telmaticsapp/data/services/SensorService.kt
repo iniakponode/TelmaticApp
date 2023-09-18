@@ -5,10 +5,7 @@ import android.app.*
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.location.Location
-import android.location.LocationListener
 import android.location.LocationManager
-import android.location.LocationManager.KEY_LOCATION_CHANGED
 import android.os.Build
 import android.os.IBinder
 import android.util.Log
@@ -16,13 +13,12 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.uoa.telmaticsapp.R
-import com.uoa.telmaticsapp.data.model.SensorsData
+import com.uoa.telmaticsapp.data.model.SensorsModel
 import com.uoa.telmaticsapp.domain.usecase.StartSensors
 import com.uoa.telmaticsapp.domain.usecase.StopSensors
 import com.uoa.telmaticsapp.presentation.ui.AppStartHome
 import com.uoa.telmaticsapp.presentation.ui.StoredToken
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.Flow
 //import kotlinx.coroutines.flow.Flow
@@ -35,7 +31,7 @@ import javax.inject.Inject
 class SensorService() : Service() {
 
     private lateinit var locationManager: LocationManager
-    private  lateinit var sensorsD: SensorsData
+    private  lateinit var sensorsD: SensorsModel
     private var background = false
     private val notificationActivityRequestCode = 0
     private val notificationId = 1
@@ -43,7 +39,7 @@ class SensorService() : Service() {
 
     @Inject
     lateinit var startSensors: StartSensors
-    val stSensors: Flow<List<SensorsData>>
+    val stSensors: Flow<List<SensorsModel>>
         get()=startSensors.execute()
     @Inject
     lateinit var stopSensors: StopSensors
@@ -134,7 +130,7 @@ class SensorService() : Service() {
         val dat_text: String = sdf.format(loc_date)
 
         val intent = Intent()
-        var sensors_D = SensorsData(
+        var sensors_D = SensorsModel(
             StoredToken.tripId,
             listOf(0.0f, 0.0f, 0.0f),
 //            listOf(0.0f, 0.0f, 0.0f),
@@ -260,7 +256,7 @@ class SensorService() : Service() {
         val LOC_TIME="LOCATION_TIME"
         val COLLECTED_DATE="COLLECTED_DATE"
         val TrackPOINT="TrackPoint"
-        val TRACK="Track"
+        val ExternalFactorsModel="ExternalFactorsModel"
         val LASTPOINTS="LastKnownPoints"
         val LONGITUDE="longitude"
         val LATITUDE="latitude"

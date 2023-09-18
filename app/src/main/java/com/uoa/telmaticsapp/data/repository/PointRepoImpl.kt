@@ -1,7 +1,7 @@
 package com.uoa.telmaticsapp.data.repository
 
 import com.uoa.telmaticsapp.data.model.TrackPoint
-import com.uoa.telmaticsapp.data.model.SensorsData
+import com.uoa.telmaticsapp.data.model.SensorsModel
 import com.uoa.telmaticsapp.data.repository.datasource.ComputedPointFrmPhoneSensors
 import com.uoa.telmaticsapp.data.repository.datasource.PointData
 import com.uoa.telmaticsapp.domain.repository.PointRepository
@@ -21,7 +21,7 @@ class PointRepoImpl(private val pointData: PointData, private val computedPointF
     }
 
     override fun computePointsFromHardware(
-        sensorData: SensorsData,
+        sensorData: SensorsModel,
         totalMeters: Double,
         deceleration: Double,
         trackId: String,

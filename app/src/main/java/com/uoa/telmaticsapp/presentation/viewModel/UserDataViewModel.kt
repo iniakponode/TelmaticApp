@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.uoa.telmaticsapp.data.model.User
+import com.uoa.telmaticsapp.data.model.DeviceModel
 import com.uoa.telmaticsapp.domain.usecase.CreateUser
 import com.uoa.telmaticsapp.domain.usecase.UpdateUser
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,7 +21,7 @@ class UserDataViewModel@Inject constructor(
     application: Application
 ): AndroidViewModel(application){
 
-    private var sbText= MutableLiveData<String>("Register User")
+    private var sbText= MutableLiveData<String>("Register DeviceModel")
     val btnText: LiveData<String>
         get() = sbText
 
@@ -78,21 +78,21 @@ fun updateSBText(regStatText:String){
 //    fun saveDeviceID(deviceID:String){
 //        c_id.value=deviceID
 //    }
-    fun InitializeUser(user: User):Boolean{
+    fun InitializeUser(deviceModel: DeviceModel):Boolean{
         var inserted=false
-        c_id.value=user.clientID
-        f_name.value=user.firstName
-        l_Name.value=user.lastName
-        n_Name.value=user.nickname
-        u_phone.value=user.phone
-        u_email.value=user.email
-        u_address.value=user.address
-        dob.value=user.birthday
-        u_gender.value=user.birthday
-        m_status.value=user.maritalStatus
-        n_child.value=user.childrenCount
+        c_id.value=deviceModel.clientID
+        f_name.value=deviceModel.firstName
+        l_Name.value=deviceModel.lastName
+        n_Name.value=deviceModel.nickname
+        u_phone.value=deviceModel.phone
+        u_email.value=deviceModel.email
+        u_address.value=deviceModel.address
+        dob.value=deviceModel.birthday
+        u_gender.value=deviceModel.birthday
+        m_status.value=deviceModel.maritalStatus
+        n_child.value=deviceModel.childrenCount
 
-        val newUser=User(
+        val newDeviceModel=DeviceModel(
             c_id.value!!,
             f_name.value!!,
             l_Name.value!!,
@@ -109,28 +109,28 @@ fun updateSBText(regStatText:String){
 
     if(!inserted){
                GlobalScope.launch(Dispatchers.IO) {
-                   createUser.execute(newUser)
+                   createUser.execute(newDeviceModel)
                }
                inserted=true
            }
         return inserted
     }
 
-    fun updateUser(user: User):Boolean{
+    fun updateUser(deviceModel: DeviceModel):Boolean{
         var updated=false
-        c_id.value=user.clientID
-        f_name.value=user.firstName
-        l_Name.value=user.lastName
-        n_Name.value=user.nickname
-        u_phone.value=user.phone
-        u_email.value=user.email
-        u_address.value=user.address
-        dob.value=user.birthday
-        u_gender.value=user.birthday
-        m_status.value=user.maritalStatus
-        n_child.value=user.childrenCount
+        c_id.value=deviceModel.clientID
+        f_name.value=deviceModel.firstName
+        l_Name.value=deviceModel.lastName
+        n_Name.value=deviceModel.nickname
+        u_phone.value=deviceModel.phone
+        u_email.value=deviceModel.email
+        u_address.value=deviceModel.address
+        dob.value=deviceModel.birthday
+        u_gender.value=deviceModel.birthday
+        m_status.value=deviceModel.maritalStatus
+        n_child.value=deviceModel.childrenCount
 
-        val newUser=User(
+        val newDeviceModel=DeviceModel(
             c_id.value!!,
             f_name.value!!,
             l_Name.value!!,
@@ -144,7 +144,7 @@ fun updateSBText(regStatText:String){
             n_child.value!!,
             u_type.value!!)
         GlobalScope.launch(Dispatchers.IO) {
-            updateUser.execute(newUser).also {
+            updateUser.execute(newDeviceModel).also {
                 updated=true
             }
 

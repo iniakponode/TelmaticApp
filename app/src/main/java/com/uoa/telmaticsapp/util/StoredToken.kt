@@ -12,7 +12,7 @@ class StoredToken {
         fun getStoredDeviceToken(sf:SharedPreferences,tokenFileID:String): String {
             val deviceToken = sf.getString(tokenFileID, null)
             val devT = deviceToken.toString()
-            Log.i("Device-TokenSaved", deviceToken.toString())
+            Log.i("DeviceModel-TokenSaved", deviceToken.toString())
             return devT
         }
         fun validateToken(token:String):Boolean{
