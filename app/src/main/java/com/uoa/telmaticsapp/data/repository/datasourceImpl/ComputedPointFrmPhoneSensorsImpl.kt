@@ -5,27 +5,28 @@ import android.util.Log
 import com.uoa.telmaticsapp.data.model.TrackPoint
 import com.uoa.telmaticsapp.data.model.SensorsData
 import com.uoa.telmaticsapp.data.repository.datasource.ComputedPointFrmPhoneSensors
+import java.text.SimpleDateFormat
 import java.time.Instant
 import java.time.format.DateTimeFormatter
 import java.util.*
-import kotlin.math.PI
-import kotlin.math.atan
-import kotlin.math.atan2
+//import kotlin.math.PI
+//import kotlin.math.atan
+//import kotlin.math.atan2
 import kotlin.math.sqrt
 import kotlin.streams.asSequence
 
 class ComputedPointFrmPhoneSensorsImpl(): ComputedPointFrmPhoneSensors {
     var pointID=0
-    override fun computePointsFromHardware(sensorData:SensorsData,totalMeters:Double,deceleration:Double, trackId:String, speed:Double,midSpeed:Double, longitude:String, latitude:String): TrackPoint {
-        var gravity=FloatArray(3)
+    override fun computePointsFromHardware(sensorData:SensorsData,totalMets:Double,deceleration:Double, trackId:String, speed:Double,midSpeed:Double, long:String, lat:String): TrackPoint {
+        val gravity=FloatArray(3)
 
         pointID+=1
 
 //        Acceleration Filter
-        val alpha = 0.8f;
+        val alpha = 0.8f
 
         // Isolate the force of gravity with the low-pass filter.
-        gravity[0] = alpha * sensorData.gravity[0] + (1 - alpha) * sensorData.accelerom[0];
+        gravity[0] = alpha * sensorData.gravity[0] + (1 - alpha) * sensorData.accelerom[0]
         gravity[1] = alpha * sensorData.gravity[1] + (1 - alpha) * sensorData.accelerom[1]
         gravity[2] = alpha * sensorData.gravity[2] + (1 - alpha) * sensorData.accelerom[2]
         // Remove the gravity contribution with the high-pass filter.
@@ -47,12 +48,16 @@ class ComputedPointFrmPhoneSensorsImpl(): ComputedPointFrmPhoneSensors {
         val accelerationZOriginal=sensorData.accelerom[2]
 //        val accuracy: Double
 //        val course: Double
-        val date=System.currentTimeMillis()
-        val pointDate=if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//        val date=System.currentTimeMillis()
+        val pointDate = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             DateTimeFormatter.ISO_INSTANT.format(Instant.now()).toString()
         } else {
-
+            // Use SimpleDateFormat for Android versions lower than Oreo
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US)
+            dateFormat.timeZone = TimeZone.getTimeZone("UTC") // You can adjust the timezone as needed
+            dateFormat.format(Date())
         }
+
         val gyroscopeXOriginal=sensorData.gyroscope[0]
         val gyroscopeYOriginal=sensorData.gyroscope[1]
         val gyroscopeZOriginal=sensorData.gyroscope[2]
@@ -69,9 +74,9 @@ class ComputedPointFrmPhoneSensorsImpl(): ComputedPointFrmPhoneSensors {
 //        val gyroLtdOriginalY=sensorData.gyroscopeLtdA[1]
 //        val gyroLtdOriginalZ=sensorData.gyroscopeLtdA[2]
 
-        val gyroLtdUnOriginalX=sensorData.gyroscopeLtdAUncalibrated[0]
-        val gyroLtdUnOriginalY=sensorData.gyroscopeLtdAUncalibrated[1]
-        val gyroLtdUnOriginalZ=sensorData.gyroscopeLtdAUncalibrated[2]
+//        val gyroLtdUnOriginalX=sensorData.gyroscopeLtdAUncalibrated[0]
+//        val gyroLtdUnOriginalY=sensorData.gyroscopeLtdAUncalibrated[1]
+//        val gyroLtdUnOriginalZ=sensorData.gyroscopeLtdAUncalibrated[2]
 
         val sensorgravityDataX=sensorData.gravity[0]
         val sensorgravityDataY=sensorData.gravity[1]
@@ -92,28 +97,28 @@ class ComputedPointFrmPhoneSensorsImpl(): ComputedPointFrmPhoneSensors {
 
 
 
-        val latitude=latitude
-        val longitude=longitude
-        val tickTimestamp=System.currentTimeMillis()
-        val totalMeters=totalMeters
-        val yaw=updateYaw(
-            accelerationX,
-            accelerationY,
-            accelerationZ
-        )
-        val pitch=updatePitch(
-            accelerationX,
-            accelerationY,
-            accelerationZ
-        )
-        val roll=updateRoll(
-            accelerationX,
-            accelerationY,
-            accelerationZ
-        )
+        val latitude=lat
+        val longitude=long
+//        val tickTimestamp=System.currentTimeMillis()
+        val totalMeters=totalMets
+//        val yaw=updateYaw(
+//            accelerationX,
+//            accelerationY,
+//            accelerationZ
+//        )
+//        val pitch=updatePitch(
+//            accelerationX,
+//            accelerationY,
+//            accelerationZ
+//        )
+//        val roll=updateRoll(
+//            accelerationX,
+//            accelerationY,
+//            accelerationZ
+//        )
         val source = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         val tripId= if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            java.util.Random().ints(8, 0, source.length)
+            Random().ints(8, 0, source.length)
                 .asSequence()
                 .map(source::get)
                 .joinToString("")
@@ -181,18 +186,18 @@ class ComputedPointFrmPhoneSensorsImpl(): ComputedPointFrmPhoneSensors {
         return trackPointObject
 
     }
-    private fun updateYaw(accelX: Float, accelY:Float, accelZ:Float):Double{
-        val  yaw = 180 * atan (accelZ/ sqrt(accelX*accelX + accelZ*accelZ)) / PI
-        return yaw
-    }
-    private fun updateRoll(accelX: Float, accelY:Float, accelZ:Float): Double{
-        val roll = 180 * atan2(accelY, sqrt(accelX*accelX + accelZ*accelZ)) / PI
-        return roll
-    }
-    private fun updatePitch(accelX: Float, accelY:Float, accelZ:Float):Double{
-        val pitch=180 * atan2(accelX, sqrt(accelY*accelY + accelZ*accelZ)) / PI
-        return pitch
-    }
+//    private fun updateYaw(accelX: Float, accelY:Float, accelZ:Float):Double{
+//        val  yaw = 180 * atan (accelZ/ sqrt(accelX*accelX + accelZ*accelZ)) / PI
+//        return yaw
+//    }
+//    private fun updateRoll(accelX: Float, accelY:Float, accelZ:Float): Double{
+//        val roll = 180 * atan2(accelY, sqrt(accelX*accelX + accelZ*accelZ)) / PI
+//        return roll
+//    }
+//    private fun updatePitch(accelX: Float, accelY:Float, accelZ:Float):Double{
+//        val pitch=180 * atan2(accelX, sqrt(accelY*accelY + accelZ*accelZ)) / PI
+//        return pitch
+//    }
     private fun computeAcceleration(accelx:Float, accely:Float, accelz:Float): Float {
         return sqrt(accelx*accelx+accely*accely+accelz*accelz)
     }

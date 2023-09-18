@@ -17,12 +17,12 @@ import javax.inject.Inject
 
 // TODO: Rename actions, choose action names that describe tasks that this
 // IntentService can perform, e.g. ACTION_FETCH_NEW_ITEMS
-private const val GENERATE_SENSOR_DATA = "com.uoa.telmaticsapp.data.services.sensorsService.startSensors"
-private const val STOP_SENSORS = "com.uoa.telmaticsapp.presentation.services.sensorsService.stopSensor"
+//private const val GENERATE_SENSOR_DATA = "com.uoa.telmaticsapp.data.services.sensorsService.startSensors"
+//private const val STOP_SENSORS = "com.uoa.telmaticsapp.presentation.services.sensorsService.stopSensor"
 
 // TODO: Rename parameters
-private const val EXTRA_PARAM1 = "com.uoa.telmaticsapp.presentation.extra.PARAM1"
-private const val EXTRA_PARAM2 = "com.uoa.telmaticsapp.presentation.extra.PARAM2"
+//private const val EXTRA_PARAM1 = "com.uoa.telmaticsapp.presentation.extra.PARAM1"
+//private const val EXTRA_PARAM2 = "com.uoa.telmaticsapp.presentation.extra.PARAM2"
 
 /**
  * An [IntentService] subclass for handling asynchronous task requests in
@@ -121,10 +121,10 @@ val stopSens:Any
         }
 
     override fun onLocationChanged(location: Location) {
-        makeUseOfNewLocation(location);
+        makeUseOfNewLocation(location)
 
         if(currentBestLocation == null){
-            currentBestLocation = location;
+            currentBestLocation = location
         }
 
         GlobalScope.launch {
@@ -135,12 +135,12 @@ val stopSens:Any
             val accuracy =currentBestLocation!!.accuracy
 
             val intent=Intent()
-               intent.putExtra(LATITUDE,latitude)
-               intent.putExtra(LONGITUDE,longitude)
-               intent.putExtra(SPEED,speed)
-               intent.putExtra(LOC_ACCURACY,accuracy)
-               intent.putExtra(DISTANCE,distance)
-               intent.action= KEY_LOCATION_CHANGED_ACTION
+           intent.putExtra(LATITUDE,latitude)
+           intent.putExtra(LONGITUDE,longitude)
+           intent.putExtra(SPEED,speed)
+           intent.putExtra(LOC_ACCURACY,accuracy)
+           intent.putExtra(DISTANCE,distance)
+           intent.action= KEY_LOCATION_CHANGED_ACTION
 
         LocalBroadcastManager.getInstance(applicationContext).sendBroadcast(intent)
 

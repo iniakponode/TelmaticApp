@@ -135,11 +135,11 @@ object SensorsModule {
         ): SensorDataFromHardware{
         return SensorDataFromHardwareImpl(
             acceleromSensorM,
-            acceleromSensorLtdAM,
             accelerometerSensorLtdAUnCalibratedM,
+//            acceleromSensorLtdAM,
             gpsLocationSensorM,
             gyroscopeSensorM,
-            gyroscopeSensorLtdAM,
+//            gyroscopeSensorLtdAM,
             gyroscopeSensorLtdAUncalibrated,
             linearAccelerationM,
             rotationVectorSensor,

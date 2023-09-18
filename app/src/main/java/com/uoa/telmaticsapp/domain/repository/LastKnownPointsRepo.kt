@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 import java.util.*
 
 interface LastKnownPointsRepo {
-    suspend fun addLastKnownPoints(points:LastKnownPoints)
+    suspend fun addLastKnownPoints(lKpoints:LastKnownPoints)
     fun getLastKnownPoints(): List<LastKnownPoints>
     fun getALastKnwonPoint(lastKPointId: UUID):Flow<LastKnownPoints>
     suspend fun deleteLastKnownPoints(lastKnownPoints: LastKnownPoints)
