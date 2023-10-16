@@ -6,6 +6,13 @@ This app is built for the purpose of collecting road driving data from drivers. 
 ## Overview
 This repository contains the source code for the TelmaticsApp, a mobile application designed to collect real-time driving data using mobile phone sensors. The app collects data at a rate of 200Hz per second and is designed to be used by drivers. This readme file provides an overview of the codebase, its structure, and instructions for using and running the code.
 
+## App Screenshots
+
+![Start Trip Screen](Images/first_screen.png)
+![Stop Trip Screen](https://example.com/screenshot2.png)
+![Driving Influence Report Form Screen 1](https://example.com/screenshot2.png)
+![Driving Influence Report Form Screen 2](https://example.com/screenshot2.png)
+
 ## Code Structure
 The TelmaticsApp codebase is organized into several packages, each serving a specific purpose:
 
