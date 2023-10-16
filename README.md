@@ -8,10 +8,7 @@ This repository contains the source code for the TelmaticsApp, a mobile applicat
 
 ## App Screenshots
 
-![Start Trip Screen](Images/first_screen.png)
-![Stop Trip Screen](https://example.com/screenshot2.png)
-![Driving Influence Report Form Screen 1](https://example.com/screenshot2.png)
-![Driving Influence Report Form Screen 2](https://example.com/screenshot2.png)
+Screenshots of the App are in the Images folder
 
 ## Code Structure
 The TelmaticsApp codebase is organized into several packages, each serving a specific purpose:
