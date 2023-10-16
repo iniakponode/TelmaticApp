@@ -4,7 +4,7 @@ import androidx.room.*
 import com.uoa.telmaticsapp.data.model.DeviceModel
 import kotlinx.coroutines.flow.Flow
 @Dao
-interface UserDAO {
+interface DeviceDAO {
 
     @Insert
     suspend fun insertUser(deviceModel:DeviceModel)

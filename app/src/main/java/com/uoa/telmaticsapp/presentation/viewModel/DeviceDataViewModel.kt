@@ -14,14 +14,14 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class UserDataViewModel@Inject constructor(
+class DeviceDataViewModel@Inject constructor(
 //    private val app:Application,
     private val createUser:CreateUser,
     private val updateUser: UpdateUser,
     application: Application
 ): AndroidViewModel(application){
 
-    private var sbText= MutableLiveData<String>("Register DeviceModel")
+    private var sbText= MutableLiveData<String>("Register Device")
     val btnText: LiveData<String>
         get() = sbText
 

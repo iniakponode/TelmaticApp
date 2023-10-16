@@ -5,7 +5,7 @@
     <data>
         <variable
             name="userViewModel"
-            type="com.uoa.telmaticsapp.presentation.viewModel.UserDataViewModel"
+            type="com.uoa.telmaticsapp.presentation.viewModel.DeviceDataViewModel"
             />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout

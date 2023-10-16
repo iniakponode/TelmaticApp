@@ -17,7 +17,7 @@ import kotlin.streams.asSequence
 
 class ComputedPointFrmPhoneSensorsImpl(): ComputedPointFrmPhoneSensors {
     var pointID=0
-    override fun computePointsFromHardware(sensorData:SensorsModel, totalMets:Double, deceleration:Double, trackId:String, speed:Double, midSpeed:Double, long:String, lat:String): TrackPoint {
+    override fun computePointsFromHardware(sensorData:SensorsModel, totalMeters:Double, deceleration:Double, trackId:String, speed:Double, midSpeed:Double, longitude:String, latitude:String): TrackPoint {
         val gravity=FloatArray(3)
 
         pointID+=1
@@ -97,10 +97,10 @@ class ComputedPointFrmPhoneSensorsImpl(): ComputedPointFrmPhoneSensors {
 
 
 
-        val latitude=lat
-        val longitude=long
+        val lat=latitude
+        val longit=longitude
 //        val tickTimestamp=System.currentTimeMillis()
-        val totalMeters=totalMets
+        val totalMet=totalMeters
 //        val yaw=updateYaw(
 //            accelerationX,
 //            accelerationY,
@@ -169,13 +169,13 @@ class ComputedPointFrmPhoneSensorsImpl(): ComputedPointFrmPhoneSensors {
         rotVectorY,
         rotVectorZ,
         rotVectAcc,
-        latitude,
-        longitude,
+        lat,
+        longit,
         midSpeed,
             pointDate.toString(),
             speed,
             System.currentTimeMillis().toInt(),
-            totalMeters,
+            totalMet,
 //            yaw.toFloat(),
 //            pitch.toFloat(),
 //            roll.toFloat(),

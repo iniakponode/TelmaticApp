@@ -7,8 +7,13 @@ import com.uoa.telmaticsapp.presentation.di.*
 import com.uoa.telmaticsapp.presentation.ui.StoredToken
 import com.uoa.telmaticsapp.util.TrackingSensor
 import kotlinx.coroutines.flow.*
+import java.text.SimpleDateFormat
 import java.time.Instant
+import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeFormatter.ISO_INSTANT
+import java.util.Date
+import java.util.Locale
+import java.util.TimeZone
 import javax.inject.Inject
 import kotlin.streams.asSequence
 
@@ -69,10 +74,15 @@ class SensorDataFromHardwareImpl @Inject constructor(
 //}
     override fun getSensorDataFromHardwre(): Flow<List<SensorsModel>> {
 
-    val date= if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-        ISO_INSTANT.format(Instant.now()).toString()
-    } else {
 
+
+    val date = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        DateTimeFormatter.ISO_INSTANT.format(Instant.now()).toString()
+    } else {
+        // For Android versions below Oreo (API level 26), use SimpleDateFormat
+        val date = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US)
+        date.timeZone = TimeZone.getTimeZone("UTC")
+        date.format(Date())
     }
 //        val rate=SensorManager.SENSOR_DELAY_FASTEST
         val rate=200

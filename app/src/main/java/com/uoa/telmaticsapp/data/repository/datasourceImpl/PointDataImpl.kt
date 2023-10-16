@@ -14,8 +14,8 @@ class PointDataImpl(private val pointDataDAO: PointDAO) : PointData {
         return pointDataDAO.getAllPoints()
     }
 
-    override fun getAPoint(pointId: String): Flow<TrackPoint> {
-        return pointDataDAO.getAPoint(pointId)
+    override fun getAPoint(pointID: String): Flow<TrackPoint> {
+        return pointDataDAO.getAPoint(pointID)
     }
 
     override suspend fun deletePoint(trackPoint: TrackPoint) {

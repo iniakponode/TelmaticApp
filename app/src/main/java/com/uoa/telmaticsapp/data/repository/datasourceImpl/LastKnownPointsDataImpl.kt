@@ -7,8 +7,8 @@ import kotlinx.coroutines.flow.Flow
 import java.util.*
 
 class LastKnownPointsDataImpl(private val lastKnwnDAO: LastKnownPointsDAO): LastKnownPointsData {
-    override suspend fun addLastKnownPoints(lastkPoint: LastKnownPoints) {
-        lastKnwnDAO.addLastKPoint(lastkPoint)
+    override suspend fun addLastKnownPoints(points: LastKnownPoints) {
+        lastKnwnDAO.addLastKPoint(points)
     }
 
     override fun getLastKnownPoints(): List<LastKnownPoints> {

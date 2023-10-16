@@ -1,25 +1,25 @@
 package com.uoa.telmaticsapp.data.repository.datasourceImpl
 
-import com.uoa.telmaticsapp.data.db.DataAccessObjects.UserDAO
+import com.uoa.telmaticsapp.data.db.DataAccessObjects.DeviceDAO
 import com.uoa.telmaticsapp.data.model.DeviceModel
 import com.uoa.telmaticsapp.data.repository.datasource.UserLocalDataSource
 import kotlinx.coroutines.flow.Flow
 
-class UserLocalDatasourceImpl(private val userDAO: UserDAO): UserLocalDataSource {
+class UserLocalDatasourceImpl(private val deviceDAO: DeviceDAO): UserLocalDataSource {
     override suspend fun saveUser(deviceModel: DeviceModel) {
-         userDAO.insertUser(deviceModel)
+         deviceDAO.insertUser(deviceModel)
     }
 
     override fun getUsers(): Flow<List<DeviceModel>> {
-        return userDAO.getAllUsers()
+        return deviceDAO.getAllUsers()
     }
 
     override suspend fun delete(deviceModel: DeviceModel) {
-        userDAO.deleteUser(deviceModel)
+        deviceDAO.deleteUser(deviceModel)
     }
 
     override suspend fun update(deviceModel: DeviceModel) {
-        userDAO.updateUser(deviceModel)
+        deviceDAO.updateUser(deviceModel)
     }
 
 

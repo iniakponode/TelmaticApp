@@ -13,7 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.uoa.telmaticsapp.R
 import com.uoa.telmaticsapp.databinding.FragmentRegisterDeviceBinding
 import com.uoa.telmaticsapp.presentation.ui.util.TokenGenerator
-import com.uoa.telmaticsapp.presentation.viewModel.UserDataViewModel
+import com.uoa.telmaticsapp.presentation.viewModel.DeviceDataViewModel
 import com.uoa.telmaticsapp.util.StoreIDs
 import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
@@ -23,7 +23,7 @@ private lateinit var binding: FragmentRegisterDeviceBinding
 
 private lateinit var sf: SharedPreferences
 private lateinit var editor : SharedPreferences.Editor
-private val userViewModel: UserDataViewModel by activityViewModels()
+private val userViewModel: DeviceDataViewModel by activityViewModels()
 //    override fun onCreate(savedInstanceState: Bundle?) {
 //        super.onCreate(savedInstanceState)
 //
@@ -86,7 +86,7 @@ private val userViewModel: UserDataViewModel by activityViewModels()
             } else {
                 Toast.makeText(activity, "Sorry, Token could not be created", Toast.LENGTH_LONG)
                     .show()
-                userViewModel.updateSBText("Register DeviceModel")
+                userViewModel.updateSBText("Register Device")
                 findNavController().navigate(R.id.action_registerDevice_to_home)
             }
     }

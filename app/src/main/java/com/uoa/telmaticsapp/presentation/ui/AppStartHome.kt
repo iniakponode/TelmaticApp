@@ -25,6 +25,31 @@ import com.uoa.telmaticsapp.data.model.LastKnownPoints
 import com.uoa.telmaticsapp.data.model.SensorsModel
 import com.uoa.telmaticsapp.data.model.ExternalFactorsModel
 import com.uoa.telmaticsapp.data.model.TrackPoint
+import com.uoa.telmaticsapp.data.services.Constants.Companion.ACCELEROM
+import com.uoa.telmaticsapp.data.services.Constants.Companion.ACCELEROMLTDAUN
+import com.uoa.telmaticsapp.data.services.Constants.Companion.ACCELEROM_ACC
+import com.uoa.telmaticsapp.data.services.Constants.Companion.COLLECTED_DATE
+import com.uoa.telmaticsapp.data.services.Constants.Companion.DISTANCE
+import com.uoa.telmaticsapp.data.services.Constants.Companion.GRAVITY
+import com.uoa.telmaticsapp.data.services.Constants.Companion.GRAVITY_ACC
+import com.uoa.telmaticsapp.data.services.Constants.Companion.GYRO
+import com.uoa.telmaticsapp.data.services.Constants.Companion.GYROLTDAUN
+import com.uoa.telmaticsapp.data.services.Constants.Companion.GYRO_ACC
+import com.uoa.telmaticsapp.data.services.Constants.Companion.KEY_BACKGROUND
+import com.uoa.telmaticsapp.data.services.Constants.Companion.KEY_LOCATION_AND_SENSORS_VALUE_CHANGED_ACTION
+import com.uoa.telmaticsapp.data.services.Constants.Companion.KEY_LOCATION_VALUE_CHANGED
+import com.uoa.telmaticsapp.data.services.Constants.Companion.LATITUDE
+import com.uoa.telmaticsapp.data.services.Constants.Companion.LIN_ACCELEROM
+import com.uoa.telmaticsapp.data.services.Constants.Companion.LIN_ACCELEROM_ACC
+import com.uoa.telmaticsapp.data.services.Constants.Companion.LONGITUDE
+import com.uoa.telmaticsapp.data.services.Constants.Companion.MAGNETO_ACC
+import com.uoa.telmaticsapp.data.services.Constants.Companion.PITCH
+import com.uoa.telmaticsapp.data.services.Constants.Companion.ROLL
+import com.uoa.telmaticsapp.data.services.Constants.Companion.ROTVECT
+import com.uoa.telmaticsapp.data.services.Constants.Companion.ROTVECTACC
+import com.uoa.telmaticsapp.data.services.Constants.Companion.SENSORDID
+import com.uoa.telmaticsapp.data.services.Constants.Companion.SPEED
+import com.uoa.telmaticsapp.data.services.Constants.Companion.YAW
 import com.uoa.telmaticsapp.data.services.LocationService
 import com.uoa.telmaticsapp.data.services.SensorService
 import com.uoa.telmaticsapp.data.util.LocationMethods
@@ -169,20 +194,20 @@ class AppStartHome() : Fragment() {
 //            Log.i("Intents",intent.action?.get(0).toString())
 //            Toast.makeText(requireContext(),"Intent1 Recieved",Toast.LENGTH_LONG)
             number+=1
-            if (intent.action.equals(SensorService.KEY_LOCATION_AND_SENSORS_VALUE_CHANGED_ACTION)){
+            if (intent.action.equals(KEY_LOCATION_AND_SENSORS_VALUE_CHANGED_ACTION)){
                 //            Sensors Data
-                val sensorsID=intent.getStringExtra(SensorService.SENSORDID)
-                val accelerom=intent.getFloatArrayExtra(SensorService.ACCELEROM)
+                val sensorsID=intent.getStringExtra(SENSORDID)
+                val accelerom=intent.getFloatArrayExtra(ACCELEROM)
 //                val acceleromLTDA=intent.getFloatArrayExtra(SensorService.ACCELEROMLTDA)
-                val acceleroltdaUn=intent.getFloatArrayExtra(SensorService.ACCELEROMLTDAUN)
-                val gravity=intent.getFloatArrayExtra(SensorService.GRAVITY)
-                val gyroscope=intent.getFloatArrayExtra(SensorService.GYRO)
+                val acceleroltdaUn=intent.getFloatArrayExtra(ACCELEROMLTDAUN)
+                val gravity=intent.getFloatArrayExtra(GRAVITY)
+                val gyroscope=intent.getFloatArrayExtra(GYRO)
 //                val gyroscopeLTDA=intent.getFloatArrayExtra(SensorService.GYROLTDA)
-                val gyroscopeLTDAUN=intent.getFloatArrayExtra(SensorService.GYROLTDAUN)
-                val linAccelerom=intent.getFloatArrayExtra(SensorService.LIN_ACCELEROM)
+                val gyroscopeLTDAUN=intent.getFloatArrayExtra(GYROLTDAUN)
+                val linAccelerom=intent.getFloatArrayExtra(LIN_ACCELEROM)
 //                val magnetom=intent.getFloatArrayExtra(SensorService.MAGNETO)
 //                val proxim=intent.getFloatArrayExtra(SensorService.PROXIMITY)
-                val rotVect=intent.getFloatArrayExtra(SensorService.ROTVECT)
+                val rotVect=intent.getFloatArrayExtra(ROTVECT)
                 StoreIDs.storeSensorsIDLocally(requireActivity(),sensorsID.toString(),editor)
                 val sensorsD= SensorsModel(
                     sensorsID!!,
@@ -191,24 +216,24 @@ class AppStartHome() : Fragment() {
                     listOf(acceleroltdaUn?.get(0), acceleroltdaUn?.get(1),
                         acceleroltdaUn?.get(2)
                     ) as List<Float>,
-                    intent.getIntExtra(SensorService.ACCELEROM_ACC,0),
+                    intent.getIntExtra(ACCELEROM_ACC,0),
                     listOf(linAccelerom?.get(0),linAccelerom?.get(1),linAccelerom?.get(2)) as List<Float>,
-                    intent.getIntExtra(SensorService.LIN_ACCELEROM_ACC,0),
+                    intent.getIntExtra(LIN_ACCELEROM_ACC,0),
                     gyroscope?.let { listOf(it[0], it[1], it[2]) } as List<Float>,
 //                    listOf(gyroscopeLTDA!![0],gyroscopeLTDA!![1],gyroscopeLTDA!![2]),
                     listOf(gyroscopeLTDAUN!![0], gyroscopeLTDAUN[1], gyroscopeLTDAUN[2]),
-                    intent.getIntExtra(SensorService.GYRO_ACC,0),
+                    intent.getIntExtra(GYRO_ACC,0),
                     listOf(gravity!![0], gravity[1], gravity[2]),
-                    intent.getIntExtra(SensorService.GRAVITY_ACC,0),
+                    intent.getIntExtra(GRAVITY_ACC,0),
 //                    listOf(magnetom!![0],magnetom!![1]),
                     listOf(0f,0f),
-                    intent.getIntExtra(SensorService.MAGNETO_ACC,0),
+                    intent.getIntExtra(MAGNETO_ACC,0),
                     listOf(rotVect!![0],rotVect!![1],rotVect!![2]),
-                    intent.getIntExtra(SensorService.ROTVECTACC,0),
-                    intent.getFloatExtra(SensorService.YAW,0.0f),
-                    intent.getFloatExtra(SensorService.PITCH,0.0f),
-                    intent.getFloatExtra(SensorService.ROLL,0.0f),
-                    intent.getStringExtra(SensorService.COLLECTED_DATE)!!
+                    intent.getIntExtra(ROTVECTACC,0),
+                    intent.getFloatExtra(YAW,0.0f),
+                    intent.getFloatExtra(PITCH,0.0f),
+                    intent.getFloatExtra(ROLL,0.0f),
+                    intent.getStringExtra(COLLECTED_DATE)!!
 
                     )
 //                Log.i("Sensors_DataX",sensorsD.accelerom[0].toString())
@@ -217,8 +242,8 @@ class AppStartHome() : Fragment() {
                 Log.i("SIntent1","Intent1 recieved")
                 saveRawSensorData(sensorsD)
         //TrackPoint Data
-                val speed=intent.getDoubleExtra(SensorService.SPEED,0.0)
-                val distance=intent.getDoubleExtra(SensorService.DISTANCE,0.0)
+                val speed=intent.getDoubleExtra(SPEED,0.0)
+                val distance=intent.getDoubleExtra(DISTANCE,0.0)
                 val midDistance=distance/number
                 val trackId=StoredToken.getStoredID(sf,"saved_trackId")
 //                val longitude=intent.getStringExtra(SensorService.LONGITUDE)
@@ -273,32 +298,9 @@ class AppStartHome() : Fragment() {
 //            Log.i("Intents",intent.action?.get(0).toString())
 //            Toast.makeText(requireContext(),"Intent1 Recieved",Toast.LENGTH_LONG)
             number+=1
-            if(intent.action.equals(SensorService.KEY_LOCATION_VALUE_CHANGED)){
-                val longitude=intent.getDoubleExtra(SensorService.LONGITUDE,0.0)
-                val latitude=intent.getDoubleExtra(SensorService.LATITUDE,0.0)
-//                AppStartHome.lat=latitude!!
-//                AppStartHome.long= longitude!!
-                Toast.makeText(requireContext(),"Intent Recieved",Toast.LENGTH_LONG).show()
-                Log.i("SIntent2","Intent2 recieved")
-//                Log.i("LAT",latitude.toString())
-//                Log.i("LONG",longitude.toString())
-//                sensorsDataviewModel.saveLatitude(latitude)
-//                sensorsDataviewModel.saveLong(longitude)
-
-//                sensorsDataviewModel.longitude.observe(requireActivity()){ longit->
-//                    AppStartHome.long=longit
-//                }
-//                sensorsDataviewModel.latitude.observe(requireActivity()){ latit->
-//                    AppStartHome.lat=latit
-//                }
-//                Log.i("Lat",AppStartHome.lat.toString())
-//                Log.i("Lont",AppStartHome.long.toString())
-//                LocationMethods.getAddress(requireContext(),triggerBtn, binding, AppStartHome.lat, AppStartHome.long )
-
-
-
-
-
+            if(intent.action.equals(KEY_LOCATION_VALUE_CHANGED)){
+                val longitude=intent.getDoubleExtra(LONGITUDE,0.0)
+                val latitude=intent.getDoubleExtra(LATITUDE,0.0)
 
                 val pointDate=if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     DateTimeFormatter.ISO_INSTANT.format(Instant.now()).toString()
@@ -309,13 +311,13 @@ class AppStartHome() : Fragment() {
 
 //                val longitude=intent.getStringExtra(SensorService.LONGITUDE)
 //                val latitude=intent.getStringExtra(SensorService.LATITUDE)
-                Toast.makeText(requireContext(),"Intent Recieved",Toast.LENGTH_LONG).show()
+//                Toast.makeText(requireContext(),"Intent Recieved",Toast.LENGTH_LONG).show()
                 lifecycleScope.launch {
                     if (LocationMethods.isOnline(requireContext())) {
                             val addressList = LocationMethods.getAddress(
                                 requireContext(),
-                                intent.getDoubleExtra(SensorService.LATITUDE, 0.0),
-                                intent.getDoubleExtra(SensorService.LONGITUDE, 0.0)
+                                intent.getDoubleExtra(LATITUDE, 0.0),
+                                intent.getDoubleExtra(LONGITUDE, 0.0)
                             )
 
                             if (addressList.isEmpty()) {
@@ -352,11 +354,11 @@ class AppStartHome() : Fragment() {
 
     private fun startForegroundServiceForSensors(background: Boolean) {
         val sensorServiceIntent = Intent(requireContext(), SensorService::class.java)
-        sensorServiceIntent.putExtra(SensorService.KEY_BACKGROUND, background)
+        sensorServiceIntent.putExtra(KEY_BACKGROUND, background)
         ContextCompat.startForegroundService(requireContext(), sensorServiceIntent)
 //Location Foreground Service
         val locationServiceIntent = Intent(requireContext(), LocationService::class.java)
-        locationServiceIntent.putExtra(SensorService.KEY_BACKGROUND, background)
+        locationServiceIntent.putExtra(KEY_BACKGROUND, background)
         lifecycleScope.launch {
             ContextCompat.startForegroundService(requireContext(), locationServiceIntent)
         }
@@ -375,10 +377,10 @@ class AppStartHome() : Fragment() {
     override fun onResume() {
         super.onResume()
         LocalBroadcastManager.getInstance(requireContext().applicationContext).registerReceiver(
-            broadcastReceiver1,  IntentFilter(SensorService.KEY_LOCATION_AND_SENSORS_VALUE_CHANGED_ACTION)
+            broadcastReceiver1,  IntentFilter(KEY_LOCATION_AND_SENSORS_VALUE_CHANGED_ACTION)
         )
         LocalBroadcastManager.getInstance(requireContext().applicationContext).registerReceiver(
-            broadcastReceiver,  IntentFilter(SensorService.KEY_LOCATION_VALUE_CHANGED)
+            broadcastReceiver,  IntentFilter(KEY_LOCATION_VALUE_CHANGED)
         )
 //        startForegroundServiceForSensors(false)
     }

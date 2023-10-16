@@ -45,7 +45,7 @@ data class DeviceModel(
 ){
     companion object {
         const val CLIENTID="clientID"
-        const val TABLE_NAME="user"
+        const val TABLE_NAME="devicemodel"
     }
 }
 

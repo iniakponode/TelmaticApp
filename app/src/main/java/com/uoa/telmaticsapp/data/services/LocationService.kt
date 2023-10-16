@@ -14,6 +14,17 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.uoa.telmaticsapp.R
+import com.uoa.telmaticsapp.data.services.Constants.Companion.DISTANCE
+import com.uoa.telmaticsapp.data.services.Constants.Companion.KEY_BACKGROUND
+import com.uoa.telmaticsapp.data.services.Constants.Companion.KEY_LOCATION_VALUE_CHANGED
+import com.uoa.telmaticsapp.data.services.Constants.Companion.KEY_NOTIFICATION_ID
+import com.uoa.telmaticsapp.data.services.Constants.Companion.KEY_NOTIFICATION_STOP_ACTION
+import com.uoa.telmaticsapp.data.services.Constants.Companion.KEY_STOP_SERVICE
+import com.uoa.telmaticsapp.data.services.Constants.Companion.LATITUDE
+import com.uoa.telmaticsapp.data.services.Constants.Companion.LOC_ACCURACY
+import com.uoa.telmaticsapp.data.services.Constants.Companion.LOC_TIME
+import com.uoa.telmaticsapp.data.services.Constants.Companion.LONGITUDE
+import com.uoa.telmaticsapp.data.services.Constants.Companion.SPEED
 import com.uoa.telmaticsapp.data.util.LocationMethods
 import com.uoa.telmaticsapp.presentation.ui.AppStartHome
 import kotlinx.coroutines.Dispatchers
@@ -65,13 +76,13 @@ class LocationService : Service(), LocationListener {
         // Open activity intent
         val contentIntent = PendingIntent.getActivity(
             this, notificationActivityRequestCode,
-            Intent(this, AppStartHome::class.java), PendingIntent.FLAG_UPDATE_CURRENT)
+            Intent(this, AppStartHome::class.java), PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
         // Stop notification intent
         val stopNotificationIntent = Intent(this, ActionListener::class.java)
-        stopNotificationIntent.action = SensorService.KEY_NOTIFICATION_STOP_ACTION
-        stopNotificationIntent.putExtra(SensorService.KEY_NOTIFICATION_ID, notificationId)
+        stopNotificationIntent.action = KEY_NOTIFICATION_STOP_ACTION
+        stopNotificationIntent.putExtra(KEY_NOTIFICATION_ID, notificationId)
         val pendingStopNotificationIntent =
-            PendingIntent.getBroadcast(this, notificationStopRequestCode, stopNotificationIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+            PendingIntent.getBroadcast(this, notificationStopRequestCode, stopNotificationIntent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
 
         notificationBuilder.setAutoCancel(true)
             .setDefaults(Notification.DEFAULT_ALL)
@@ -94,7 +105,7 @@ class LocationService : Service(), LocationListener {
     @SuppressLint("MissingPermission")
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         intent?.let {
-                backgound=it.getBooleanExtra(SensorService.KEY_BACKGROUND,false)
+                backgound=it.getBooleanExtra(KEY_BACKGROUND,false)
 //            Log.i("Intent2","Intent 2 Started")
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,1000,0f,this)
                 locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,1000,0f,this)
@@ -132,15 +143,15 @@ class LocationService : Service(), LocationListener {
             }
 
             val intent = Intent(applicationContext, AppStartHome::class.java)
-            intent.putExtra(SensorService.LATITUDE, latitude)
-            intent.putExtra(SensorService.LONGITUDE, longitude)
+            intent.putExtra(LATITUDE, latitude)
+            intent.putExtra(LONGITUDE, longitude)
 //            intent.putExtra("loc_lat", currentBestLocation!!.latitude)
 //            intent.putExtra("loc_long", currentBestLocation!!.longitude)
-            intent.putExtra(SensorService.SPEED, speed)
-            intent.putExtra(SensorService.LOC_ACCURACY, accuracy)
-            intent.putExtra(SensorService.DISTANCE, distance)
-            intent.putExtra(SensorService.LOC_TIME, dat_text)
-            intent.action = SensorService.KEY_LOCATION_VALUE_CHANGED
+            intent.putExtra(SPEED, speed)
+            intent.putExtra(LOC_ACCURACY, accuracy)
+            intent.putExtra(DISTANCE, distance)
+            intent.putExtra(LOC_TIME, dat_text)
+            intent.action = KEY_LOCATION_VALUE_CHANGED
 //            Log.i("LATITUDE", latitude.toString())
 //            Log.i("LONG", longitude.toString())
             Log.i("LocAcc",accuracy.toString())
@@ -151,9 +162,9 @@ class LocationService : Service(), LocationListener {
     override fun onDestroy() {
         super.onDestroy()
         val locationServiceIntent=Intent()
-        locationServiceIntent.action= SensorService.KEY_STOP_SERVICE
+        locationServiceIntent.action= KEY_STOP_SERVICE
         locationServiceIntent.putExtra("STOP_LOC_TRACKING","Stopping location Service......")
-        locationServiceIntent.putExtra(SensorService.KEY_NOTIFICATION_ID,-1)
+        locationServiceIntent.putExtra(KEY_NOTIFICATION_ID,-1)
         stopSelf()
 
     }
@@ -162,15 +173,15 @@ class LocationService : Service(), LocationListener {
         override fun onReceive(context: Context?, intent: Intent?) {
 
             if (intent != null && intent.action != null) {
-                if (intent.action.equals(SensorService.KEY_NOTIFICATION_STOP_ACTION)||intent.action.equals(
-                        SensorService.KEY_STOP_SERVICE
+                if (intent.action.equals(KEY_NOTIFICATION_STOP_ACTION)||intent.action.equals(
+                        KEY_STOP_SERVICE
                     )) {
                     context?.let {
                         val notificationManager =
                             context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
                         val sensorsIntent = Intent(context, LocationService::class.java)
                         context.stopService(sensorsIntent)
-                        val notificationId = intent.getIntExtra(SensorService.KEY_NOTIFICATION_ID, -1)
+                        val notificationId = intent.getIntExtra(KEY_NOTIFICATION_ID, -1)
                         if (notificationId != -1) {
                             notificationManager.cancel(notificationId)
                         }

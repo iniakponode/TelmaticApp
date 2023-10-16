@@ -14,6 +14,8 @@ import android.os.IBinder
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.uoa.telmaticsapp.R
+import com.uoa.telmaticsapp.data.services.Constants.Companion.KEY_BACKGROUND
+import com.uoa.telmaticsapp.data.services.Constants.Companion.KEY_LOCATION_VALUE_CHANGED
 import com.uoa.telmaticsapp.presentation.ui.AppStartHome
 import java.util.*
 
@@ -39,19 +41,25 @@ class LocationS : Service(), LocationListener {
         return null
     }
 
+
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        return super.onStartCommand(intent, flags, startId)
         intent?.let {
-            background = it.getBooleanExtra(SensorService.KEY_BACKGROUND, false)
+            background = it.getBooleanExtra(KEY_BACKGROUND, false)
         }
-       return START_STICKY
+        // Perform your desired actions here based on the intent or configuration.
+        // If you want to start a foreground service, you can do it here.
+
+        // START_STICKY tells the system to restart the service if it gets terminated.
+        // If you don't want the service to be restarted, you can return START_NOT_STICKY.
+        return START_STICKY
     }
+
 
     override fun onCreate() {
         super.onCreate()
         mTimer = Timer()
         mTimer!!.schedule(TimerTaskToGetLocation(), 5, notify_interval)
-        intent = Intent(SensorService.KEY_LOCATION_VALUE_CHANGED)
+        intent = Intent(KEY_LOCATION_VALUE_CHANGED)
         val notification = createNotification(getString(R.string.not_available),
             "Tracking Location"
         )

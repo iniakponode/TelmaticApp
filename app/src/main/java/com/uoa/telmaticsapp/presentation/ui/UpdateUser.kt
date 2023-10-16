@@ -13,14 +13,14 @@ import androidx.navigation.fragment.findNavController
 import com.uoa.telmaticsapp.R
 import com.uoa.telmaticsapp.data.model.DeviceModel
 import com.uoa.telmaticsapp.databinding.FragmentUpdateUserBinding
-import com.uoa.telmaticsapp.presentation.viewModel.UserDataViewModel
+import com.uoa.telmaticsapp.presentation.viewModel.DeviceDataViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
 @AndroidEntryPoint
 class UpdateUser : Fragment() {
     private lateinit var binding: FragmentUpdateUserBinding
-    private val userViewModel : UserDataViewModel by activityViewModels()
+    private val userViewModel : DeviceDataViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

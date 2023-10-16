@@ -51,7 +51,7 @@ object DatabaseModule {
 
     @Provides
     @Singleton
-    fun provideUserDAO(telmaticDB: DDCAPDB): UserDAO {
+    fun provideUserDAO(telmaticDB: DDCAPDB): DeviceDAO {
         return telmaticDB.userDAO()
     }
 

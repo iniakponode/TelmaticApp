@@ -11,12 +11,12 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.uoa.telmaticsapp.R
 import com.uoa.telmaticsapp.databinding.FragmentHomeBinding
-import com.uoa.telmaticsapp.presentation.viewModel.UserDataViewModel
+import com.uoa.telmaticsapp.presentation.viewModel.DeviceDataViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class Home : Fragment() {
-    private val userViewModel by viewModels<UserDataViewModel>()
+    private val userViewModel by viewModels<DeviceDataViewModel>()
     private lateinit var binding: FragmentHomeBinding
     private lateinit var regStatBtn: String
     private lateinit var sf: SharedPreferences

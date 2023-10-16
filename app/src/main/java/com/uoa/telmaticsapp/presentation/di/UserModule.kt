@@ -1,6 +1,6 @@
 package com.uoa.telmaticsapp.presentation.di
 
-import com.uoa.telmaticsapp.data.db.DataAccessObjects.UserDAO
+import com.uoa.telmaticsapp.data.db.DataAccessObjects.DeviceDAO
 import com.uoa.telmaticsapp.data.repository.UserRepoImpl
 import com.uoa.telmaticsapp.data.repository.datasource.UserLocalDataSource
 import com.uoa.telmaticsapp.data.repository.datasourceImpl.UserLocalDatasourceImpl
@@ -21,7 +21,7 @@ object UserModule {
     }
     @Provides
     @Singleton
-    fun providelocalUser(userDAO: UserDAO): UserLocalDataSource {
-        return UserLocalDatasourceImpl(userDAO)
+    fun providelocalUser(deviceDAO: DeviceDAO): UserLocalDataSource {
+        return UserLocalDatasourceImpl(deviceDAO)
     }
 }

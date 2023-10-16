@@ -19,7 +19,7 @@ import com.uoa.telmaticsapp.data.model.*
     SensorsModel::class], version=14, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class DDCAPDB: RoomDatabase() {
-    abstract fun userDAO(): UserDAO
+    abstract fun userDAO(): DeviceDAO
     abstract fun userAPIResponse(): UserAPIResponseDAO
     abstract fun trackDAO(): TrackDAO
     abstract fun tripDetailsDAO(): TripDetailsDAO
