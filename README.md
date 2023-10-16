@@ -8,7 +8,7 @@ This repository contains the source code for the TelmaticsApp, a mobile applicat
 
 ## App Screenshots
 
-![Start Trip Screen](https://example.com/screenshot1.png)
+![Start Trip Screen]([https://example.com/screenshot1.png](https://github.com/iniakponode/TelmaticApp/blob/master/Images/first_screen.png))
 ![Stop Trip Screen](https://example.com/screenshot2.png)
 ![Driving Influence Report Form Screen 1](https://example.com/screenshot2.png)
 ![Driving Influence Report Form Screen 2](https://example.com/screenshot2.png)
