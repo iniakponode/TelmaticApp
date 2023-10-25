@@ -4,7 +4,7 @@ This app is built for the purpose of collecting road driving data from drivers. 
 # TelmaticsApp Code Documentation
 
 ## Overview
-This repository contains the source code for the TelmaticsApp, a mobile application designed to collect real-time driving data using mobile phone sensors. The app collects data at a rate of 200Hz per second and is designed to be used by drivers. This readme file provides an overview of the codebase, its structure, and instructions for using and running the code.
+This repository contains the source code for the TelmaticsApp, a mobile application designed to collect real-time driving data using mobile phone sensors. The app collects data at the rate of 200Hz per second and is designed to be used by drivers. This readme file provides an overview of the codebase, its structure, and instructions for using and running the code.
 
 ## App Screenshots
 
@@ -17,8 +17,9 @@ The TelmaticsApp codebase is organized into several packages, each serving a spe
 - This package is expected to contain services that query external databases, but it's not yet fully implemented in the current version of the code.
 
 ### `db`
+The current version of the app only have a local database created and managed on the phone, the database settup and other related data are in this package. It
 - Contains Data Access Objects (DAO) and defines the database schema.
-- Includes the following DAOs:
+- Which Includes the following DAOs:
   - DeviceDAO
   - LastKnownPointDAO
   - LawEstablishedDAO
@@ -62,8 +63,7 @@ To use or run the code, follow these steps:
 1. Clone this repository to your local machine.
 2. Open the code in your preferred integrated development environment (IDE).
 3. Ensure you have the necessary dependencies and SDKs installed for mobile app development.
-4. Configure any necessary API keys or settings for external services (if applicable).
-5. Build and run the application on an emulator or a physical device.
+4. Build and run the application on an emulator or a physical device.
 
 ## How to Run the Code Details
 
