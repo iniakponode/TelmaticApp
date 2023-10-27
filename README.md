@@ -111,6 +111,8 @@ The Follow steps gives a detailed how to run of the TelmaticsApp code:
     - Connect your Android phone to your computer with a cable or via a hotspot connection to Android Studio.
     - Ensure that the developer options on your Android phone are enabled.
     - Build and generate the APK file and install it on your Android phone.
+   
+11. Anyone can join the app testing group here: https://play.google.com/apps/internaltest/4701382368637554521 to test the app
 
 
 Please note that the code is still a work in progress, and some features, such as external database interactions, may not be fully implemented in the current version.
